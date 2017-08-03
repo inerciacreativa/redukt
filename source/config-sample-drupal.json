@@ -1,0 +1,32 @@
+{
+  "publicPath": "/themes/redukt",
+  "folders": {
+    "target": ".",
+    "styles": "css",
+    "scripts": "js",
+    "images": "img"
+  },
+  "entry": {
+    "main": [
+      "./sass/main.scss",
+      "./js/main.js"
+    ]
+  },
+  "watch": [
+    "*.yml",
+    "templates/**/*.twig"
+  ],
+  "enabled": {
+    "lint": false,
+    "cacheBusting": false,
+  },
+  "proxyUrl": "http://localhost:3000",
+  "devUrl": "http://redukt.dev",
+  "devSsl": false,
+  "browsers": [
+    "> 2%",
+    "last 2 versions",
+    "android 4",
+    "opera 12"
+  ]
+}

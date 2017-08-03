@@ -12,7 +12,6 @@ const publicPath = (base, folder) => (folder === '.') ? base : `${base}/${folder
 const cleanPaths = (folders) => [folders.styles, folders.scripts, folders.images].map((folder) => path.join(folders.target, folder));
 
 const config = merge({
-  open: true,
   proxyUrl: 'http://localhost:3000',
   devSsl: {},
   cacheBusting: '[name]_[hash:8]',
@@ -34,6 +33,7 @@ const config = merge({
 }, userConfig);
 
 module.exports = merge(config, {
+  open: true,
   env: Object.assign({
     production: isProduction,
     development: !isProduction
