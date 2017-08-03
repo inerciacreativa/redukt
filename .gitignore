@@ -1,6 +1,5 @@
+source/config.json
 target
 bower_components
 node_modules
-npm-debug.log
 yarn-error.log
-source/config.json
