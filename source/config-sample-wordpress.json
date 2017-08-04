@@ -10,7 +10,7 @@
     ]
   },
   "watch": [
-    ["**/*.php"]
+    "**/*.php"
   ],
   "proxyUrl": "https://localhost:3000",
   "devUrl": "https://redukt.dev",
