@@ -3,6 +3,7 @@ const merge = require('webpack-merge');
 const CleanPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyGlobsPlugin = require('copy-globs-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const config = require('./config');
 const assetsFilenames = (config.enabled.cacheBusting) ? config.cacheBusting : '[name]';
@@ -34,13 +35,13 @@ let webpackConfig = {
     rules: [
       {
         enforce: 'pre',
-        test: /\.(js|s?[ca]ss)$/,
+        test: /\.(js|s[ca]ss|less|css)$/,
         include: config.paths.source,
         loader: 'import-glob',
       },
       {
         test: /\.js$/,
-        exclude: [/(node_modules|bower_components)(?![/|\\](bootstrap|foundation-sites))/],
+        exclude: [/(node_modules)(?![/|\\](bootstrap|foundation-sites))/],
         use: [
           {loader: 'buble', options: {objectAssign: 'Object.assign'}},
         ],
@@ -51,6 +52,7 @@ let webpackConfig = {
         use: ExtractTextPlugin.extract({
           fallback: 'style',
           use: [
+            {loader: 'cache'},
             {loader: 'css', options: {sourceMap: config.enabled.sourceMaps}},
             {
               loader: 'postcss', options: {
@@ -67,6 +69,7 @@ let webpackConfig = {
         use: ExtractTextPlugin.extract({
           fallback: 'style',
           use: [
+            {loader: 'cache'},
             {loader: 'css', options: {sourceMap: config.enabled.sourceMaps}},
             {
               loader: 'postcss', options: {
@@ -79,11 +82,12 @@ let webpackConfig = {
         }),
       },
       {
-        test: /\.scss$/,
+        test: /\.s[ac]ss$/,
         include: config.paths.source,
         use: ExtractTextPlugin.extract({
           fallback: 'style',
           use: [
+            {loader: 'cache'},
             {loader: 'css', options: {sourceMap: config.enabled.sourceMaps}},
             {
               loader: 'postcss', options: {
@@ -110,7 +114,7 @@ let webpackConfig = {
       },
       {
         test: /\.(ttf|eot|woff2?|png|jpe?g|gif|svg|ico)$/,
-        include: /node_modules|bower_components/,
+        include: /node_modules/,
         loader: 'url',
         options: {
           limit: 4096,
@@ -165,16 +169,17 @@ let webpackConfig = {
       stats: {colors: true},
     }),
     new webpack.LoaderOptionsPlugin({
-      test: /\.s?css|less$/,
+      test: /\.css|s[ac]ss|less$/,
       options: {
         output: {path: config.paths.target},
         context: config.paths.source,
       },
     }),
+    new FriendlyErrorsWebpackPlugin(),
   ],
 };
 
-if (config.enabled.lint) {
+if (['all', 'styles', 'scripts'].includes(config.enabled.lint)) {
   webpackConfig = merge(webpackConfig, require('./webpack.lint')(config));
 }
 
@@ -191,7 +196,7 @@ if (config.enabled.cacheBusting) {
 
   webpackConfig.plugins.push(
       new WebpackAssetsManifest({
-        output: 'assets.json',
+        output: config.manifestFile,
         space: 2,
         writeToDisk: false,
         assets: config.manifest,
