@@ -52,7 +52,6 @@ let webpackConfig = {
         use: ExtractTextPlugin.extract({
           fallback: 'style',
           use: [
-            {loader: 'cache'},
             {loader: 'css', options: {sourceMap: config.enabled.sourceMaps}},
             {
               loader: 'postcss', options: {
@@ -69,7 +68,6 @@ let webpackConfig = {
         use: ExtractTextPlugin.extract({
           fallback: 'style',
           use: [
-            {loader: 'cache'},
             {loader: 'css', options: {sourceMap: config.enabled.sourceMaps}},
             {
               loader: 'postcss', options: {
@@ -87,7 +85,6 @@ let webpackConfig = {
         use: ExtractTextPlugin.extract({
           fallback: 'style',
           use: [
-            {loader: 'cache'},
             {loader: 'css', options: {sourceMap: config.enabled.sourceMaps}},
             {
               loader: 'postcss', options: {
