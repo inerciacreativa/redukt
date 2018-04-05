@@ -28,12 +28,13 @@ module.exports = (config) => {
         proxyUrl: config.proxyUrl,
         watch: config.watch,
         delay: 500,
+        disableHostCheck: true,
         advanced: {
           browserSync: {
-            https: config.devSsl
-          }
-        }
-      })
-    ]
+            https: config.devSsl,
+          },
+        },
+      }),
+    ],
   };
 };
