@@ -9,24 +9,24 @@ module.exports = (config) => {
           enforce: 'pre',
           test: /\.js$/,
           include: config.paths.source,
-          use: 'eslint'
-        }
-      ]
+          use: 'eslint',
+        },
+      ],
     },
     plugins: [
       new webpack.LoaderOptionsPlugin({
         test: /\.js$/,
         options: {
-          eslint: {failOnWarning: false, failOnError: true}
-        }
-      })
-    ]
+          eslint: {failOnWarning: false, failOnError: true},
+        },
+      }),
+    ],
   };
 
   if (config.enabled.lint === true || config.enabled.lint === 'styles') {
     webpackConfig.plugins.push(new StyleLintPlugin({
       files: ['**/*.s?(a|c)ss', '**/*.less'],
-      failOnError: false
+      failOnError: false,
     }));
   }
 

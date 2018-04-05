@@ -55,9 +55,9 @@ let webpackConfig = {
             {loader: 'css', options: {sourceMap: config.enabled.sourceMaps}},
             {
               loader: 'postcss', options: {
-              config: {path: __dirname, ctx: config},
-              sourceMap: config.enabled.sourceMaps,
-            },
+                config: {path: __dirname, ctx: config},
+                sourceMap: config.enabled.sourceMaps,
+              },
             },
           ],
         }),
@@ -71,9 +71,9 @@ let webpackConfig = {
             {loader: 'css', options: {sourceMap: config.enabled.sourceMaps}},
             {
               loader: 'postcss', options: {
-              config: {path: __dirname, ctx: config},
-              sourceMap: config.enabled.sourceMaps,
-            },
+                config: {path: __dirname, ctx: config},
+                sourceMap: config.enabled.sourceMaps,
+              },
             },
             {loader: 'less', options: {sourceMap: config.enabled.sourceMaps}},
           ],
@@ -88,13 +88,13 @@ let webpackConfig = {
             {loader: 'css', options: {sourceMap: config.enabled.sourceMaps}},
             {
               loader: 'postcss', options: {
-              config: {path: __dirname, ctx: config},
-              sourceMap: config.enabled.sourceMaps,
-            },
+                config: {path: __dirname, ctx: config},
+                sourceMap: config.enabled.sourceMaps,
+              },
             },
             {
               loader: 'resolve-url',
-              options: {sourceMap: config.enabled.sourceMaps}
+              options: {sourceMap: config.enabled.sourceMaps},
             },
             {loader: 'sass', options: {sourceMap: config.enabled.sourceMaps}},
           ],
@@ -125,7 +125,6 @@ let webpackConfig = {
     modules: [
       config.paths.source,
       'node_modules',
-      'bower_components',
     ],
     enforceExtension: false,
   },
@@ -191,15 +190,13 @@ if (config.env.production) {
 if (config.enabled.cacheBusting) {
   const WebpackAssetsManifest = require('webpack-assets-manifest');
 
-  webpackConfig.plugins.push(
-      new WebpackAssetsManifest({
-        output: config.manifestFile,
-        space: 2,
-        writeToDisk: false,
-        assets: config.manifest,
-        replacer: require('./helpers/manifest'),
-      })
-  );
+  webpackConfig.plugins.push(new WebpackAssetsManifest({
+    output: config.manifestFile,
+    space: 2,
+    writeToDisk: false,
+    assets: config.manifest,
+    replacer: require('./helpers/manifest'),
+  }));
 }
 
 if (config.enabled.watcher) {

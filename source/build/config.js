@@ -21,7 +21,7 @@ const config = merge({
     target: 'assets',
     styles: 'styles',
     scripts: 'scripts',
-    images: 'images'
+    images: 'images',
   },
   pathPrefix: '/',
   enabled: {
@@ -29,7 +29,7 @@ const config = merge({
     sourceMaps: !isProduction,
     optimize: isProduction,
     cacheBusting: isProduction,
-    watcher: !!argv.watch
+    watcher: !!argv.watch,
   },
   manifestFile: 'assets.json',
   watch: [],
@@ -47,17 +47,17 @@ module.exports = merge(config, {
   open: false,
   env: Object.assign({
     production: isProduction,
-    development: !isProduction
+    development: !isProduction,
   }, argv.env),
   paths: {
     root: rootPath,
     source: path.join(rootPath, config.folders.source),
     target: path.join(rootPath, config.folders.target),
-    clean: cleanPaths(config.folders).concat(path.join(rootPath, config.folders.target, config.manifestFile))
+    clean: cleanPaths(config.folders).concat(path.join(rootPath, config.folders.target, config.manifestFile)),
   },
   copy: `${config.folders.images}/**/*`,
   publicPath: publicPath(config.publicPath, config.folders.target),
-  manifest: {}
+  manifest: {},
 });
 
 if (process.env.NODE_ENV === undefined) {
