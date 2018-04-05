@@ -12,12 +12,13 @@ module.exports = (config) => {
           plugins: [
             {removeUselessDefs: false},
             {removeUnknownsAndDefaults: false},
+            {removeTitle: false},
             {cleanupIDs: false},
-          ]
+          ],
         },
         plugins: [imageminMozjpeg({quality: 75})],
-        disable: (config.enabled.watcher)
-      })
-    ]
+        disable: (config.enabled.watcher),
+      }),
+    ],
   };
 };
