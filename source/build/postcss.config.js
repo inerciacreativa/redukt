@@ -2,7 +2,7 @@ const cssnanoConfig = {
   preset: ['default', {discardComments: {removeAll: true}}],
 };
 
-module.exports = ({file, options}) => {
+module.exports = ({options}) => {
   return {
     parser: options.enabled.optimize ? 'postcss-safe-parser' : undefined,
     plugins: {
