@@ -49,7 +49,7 @@ project/                  # → Root of your Redukt based project
 
 | Name | Type | Default | Description |
 |---|---|---|---|
-|`entry`|`{string\|Object}`|`{[chunk: string]: string|string[]}`|The entry points for **webpack**.|
+|`entry`|`{string\|Object}`|`{[chunk: string]: string\|string[]}`|The entry points for **webpack**.|
 |`path.public`|`{string}`|`/`|Specifies the public URL of the output directory when referenced in a browser (see `output.publicPath` config option of **webpack**).|
 |`lint.styles`|`{boolean}`|`true`|Whether to lint stylesheets with **stylelint**.|
 |`lint.scripts`|`{boolean}`|`true`|Whether to lint scripts with **ESLint**.|
