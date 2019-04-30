@@ -39,17 +39,17 @@ project/                  # → Root of your Redukt based project
 
 ## Build commands
 
-* `yarn start` — Compile assets when file changes are made, start **Browsersync** session (watch mode).
+* `yarn start` — Start **Browsersync** session (watch mode), compile assets when file changes are made.
 * `yarn build` — Compile the assets.
 * `yarn build:production` — Compile and optimize the assets for production.
-* `yarn lint:css` — Runs **stylelint**.
-* `yarn lint:js` — Runs **ESLint**.
+* `yarn lint:css` — Run **stylelint**.
+* `yarn lint:js` — Run **ESLint**.
 
 ## Config options
 
 | Name | Type | Default | Description |
 |---|---|---|---|
-|`entry`|`{string|Object}`|`{[chunk: string]: string|string[]}`|The entry points for **webpack**.|
+|`entry`|`{string\|Object}`|`{[chunk: string]: string|string[]}`|The entry points for **webpack**.|
 |`path.public`|`{string}`|`/`|Specifies the public URL of the output directory when referenced in a browser (see `output.publicPath` config option of **webpack**).|
 |`lint.styles`|`{boolean}`|`true`|Whether to lint stylesheets with **stylelint**.|
 |`lint.scripts`|`{boolean}`|`true`|Whether to lint scripts with **ESLint**.|
