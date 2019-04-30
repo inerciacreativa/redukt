@@ -2,11 +2,17 @@ const cssnanoConfig = {
   preset: ['default', {discardComments: {removeAll: true}}],
 };
 
+/**
+ * Adds the configuration for PostCSS.
+ *
+ * @param options
+ * @returns {{parser: *, plugins: {autoprefixer: boolean, cssnano: *}}}
+ */
 module.exports = ({options}) => {
   return {
-    parser: options.enabled.optimize ? 'postcss-safe-parser' : undefined,
+    parser: options.env.production ? 'postcss-safe-parser' : undefined,
     plugins: {
-      cssnano: options.enabled.optimize ? cssnanoConfig : false,
+      cssnano: options.env.production ? cssnanoConfig : false,
       autoprefixer: true,
     },
   };

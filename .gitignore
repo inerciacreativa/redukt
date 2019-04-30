@@ -1,5 +1,4 @@
 source/config.json
 target
-bower_components
 node_modules
 yarn-error.log

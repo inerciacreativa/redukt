@@ -1,14 +1,14 @@
 /**
- * @export
+ * @module helpers/desire
+ *
  * @param {string} dependency
  * @param {any} [fallback]
- * @return {any}
+ * @returns {any}
  */
 module.exports = (dependency, fallback) => {
   try {
     require.resolve(dependency);
-  }
-  catch (err) {
+  } catch (err) {
     return fallback;
   }
 

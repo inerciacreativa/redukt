@@ -2,62 +2,80 @@ const path = require('path');
 const {argv} = require('yargs');
 const merge = require('webpack-merge');
 const desire = require('./helpers/desire');
-const normalizePath = require('./helpers/normalize-path');
 
 const userConfig = merge(desire(`${__dirname}/../config`), desire(`${__dirname}/../config-local`));
-
 const isProduction = !!((argv.env && argv.env.production) || argv.p);
-const rootPath = (userConfig.paths && userConfig.paths.root) ? userConfig.paths.root : process.cwd();
-
-const publicPath = (base, folder) => (folder === '.') ? base : `${base}/${folder}/`;
-const cleanPaths = (folders) => [folders.styles, folders.scripts, folders.images].map((folder) => path.join(folders.target, folder));
+const cleanPaths = (folders, manifest) => [folders.images, folders.styles, folders.scripts, 'workbox-*'].map((folder) => path.join(folders.target, folder)).concat(path.join(folders.target, manifest));
 
 const config = merge({
-  proxyUrl: 'http://localhost:3000',
-  devSsl: {},
-  cacheBusting: '[name]_[hash:8]',
-  folders: {
+  entry: null,
+  path: {
+    public: '/',
+  },
+  folder: {
     source: 'source',
     target: 'assets',
     styles: 'styles',
     scripts: 'scripts',
     images: 'images',
   },
-  pathPrefix: '/',
-  enabled: {
-    lint: 'scripts',
-    sourceMaps: !isProduction,
-    optimize: isProduction,
-    cacheBusting: isProduction,
-    watcher: !!argv.watch,
+  watch: {
+    url: null,
+    proxy: "http://localhost:3000",
+    https: false,
+    open: false,
+    files: [],
   },
-  manifestFile: 'assets.json',
-  watch: [],
+  lint: {
+    watch: true,
+    styles: true,
+    scripts: true,
+  },
+  cache: {
+    manifest: 'assets.json',
+    name: '[name].[hash:12]',
+  },
+  jquery: {
+    enabled: false,
+    bundle: false,
+  },
+  workbox: {
+    script: '',
+    manifest: 'cache.[manifestHash].js',
+    cdn: false,
+    urls: {},
+  },
 }, userConfig);
 
-if (config.devSsl.key) {
-  config.devSsl.key = normalizePath(config.devSsl.key, config.pathPrefix);
+if (!config.entry) {
+  console.error('No entry points are defined.');
+  process.exit(1);
 }
 
-if (config.devSsl.cert) {
-  config.devSsl.cert = normalizePath(config.devSsl.cert, config.pathPrefix);
-}
+config.path.root = process.cwd();
+config.path.copy = `${config.folder.images}/**/*`;
+
+config.watch.enabled = !!argv.watch;
+config.lint.enabled = (!config.watch.enabled || config.lint.watch) && (config.lint.scripts || config.lint.styles);
+
+config.cache.enabled = isProduction;
+config.cache.files = {};
+
+config.workbox.enabled = isProduction && (config.workbox.script !== '');
+config.workbox.chunk = 'workbox';
+config.workbox.import = config.workbox.cdn ? 'cdn' : 'local';
 
 module.exports = merge(config, {
-  open: false,
   env: Object.assign({
     production: isProduction,
     development: !isProduction,
   }, argv.env),
-  paths: {
-    root: rootPath,
-    source: path.join(rootPath, config.folders.source),
-    target: path.join(rootPath, config.folders.target),
-    clean: cleanPaths(config.folders).concat(path.join(rootPath, config.folders.target, config.manifestFile)),
+  path: {
+    public: path.join(path.resolve(path.join(config.path.public, config.folder.target)), '/'),
+    source: path.join(config.path.root, config.folder.source),
+    target: path.join(config.path.root, config.folder.target),
+    clean: cleanPaths(config.folder, config.cache.manifest),
   },
-  copy: `${config.folders.images}/**/*`,
-  publicPath: publicPath(config.publicPath, config.folders.target),
-  manifest: {},
 });
 
 if (process.env.NODE_ENV === undefined) {
@@ -69,7 +87,7 @@ if (process.env.NODE_ENV === undefined) {
  * Example: REDUKT_TARGET=/wp-content/themes/twist/dist yarn build:production
  */
 if (process.env.REDUKT_TARGET) {
-  module.exports.publicPath = process.env.REDUKT_TARGET;
+  module.exports.path.public = process.env.REDUKT_TARGET;
 }
 
 /**

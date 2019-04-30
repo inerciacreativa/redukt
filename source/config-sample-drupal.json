@@ -1,32 +1,26 @@
 {
-  "publicPath": "/themes/redukt",
   "folders": {
     "target": ".",
     "styles": "css",
     "scripts": "js",
     "images": "img"
   },
+  "path": {
+    "public": "/themes/redukt"
+  },
   "entry": {
     "main": [
-      "./sass/main.scss",
-      "./js/main.js"
+      "css/main.scss",
+      "js/main.js"
     ]
   },
-  "watch": [
-    "*.yml",
-    "templates/**/*.twig"
-  ],
-  "enabled": {
-    "lint": false,
-    "cacheBusting": false,
-  },
-  "proxyUrl": "http://localhost:3000",
-  "devUrl": "http://redukt.dev",
-  "devSsl": false,
-  "browsers": [
-    "> 2%",
-    "last 2 versions",
-    "android 4",
-    "opera 12"
-  ]
+  "watch": {
+    "url": "http://redukt.dev",
+    "proxy": "http://localhost:3000",
+    "https": false,
+    "files": [
+      "*.yml",
+      "templates/**/*.twig"
+      ]
+  }
 }

@@ -1,27 +1,29 @@
 {
-  "publicPath": "/wp-content/themes/redukt",
+  "path": {
+    "public": "/wp-content/themes/redukt"
+  },
   "entry": {
-    "main": [
-      "./scripts/main.js",
-      "./styles/main.less"
-    ],
-    "customizer": [
-      "./scripts/customizer.js"
+    "app": [
+      "scripts/app.js",
+      "styles/app.scss"
     ]
   },
-  "watch": [
-    "**/*.php"
-  ],
-  "proxyUrl": "https://localhost:3000",
-  "devUrl": "https://redukt.dev",
-  "devSsl": {
-    "key": "path/to/certificate.key",
-    "cert": "path/to/certificate.crt"
+  "watch": {
+    "url": "https://redukt.dev",
+    "proxy": "https://localhost:3000",
+    "https": {
+      "key": "path/to/certificate.key",
+      "cert": "path/to/certificate.crt"
+    },
+    "files": [
+      "**/*.php"
+    ]
   },
-  "browsers": [
-    "> 2%",
-    "last 2 versions",
-    "android 4",
-    "opera 12"
-  ]
+  "jquery": {
+    "enabled": true
+  },
+  "workbox": {
+    "script": "scripts/sw.js",
+    "cdn": true
+  }
 }

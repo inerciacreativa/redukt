@@ -1,62 +1,76 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CleanPlugin = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-globs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyGlobsPlugin = require('copy-globs-webpack-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+const ErrorsHelper = require('./helpers/errors');
 
 const config = require('./config');
-const assetsFilenames = (config.enabled.cacheBusting) ? config.cacheBusting : '[name]';
+const file = (config.cache.enabled) ? config.cache.name : '[name]';
 
 let webpackConfig = {
-  context: config.paths.source,
+  context: config.path.source,
   entry: config.entry,
-  devtool: (config.enabled.sourceMaps ? '#source-map' : undefined),
+  devtool: config.env.development ? '#source-map' : undefined,
   output: {
-    path: config.paths.target,
-    publicPath: config.publicPath,
-    filename: `${config.folders.scripts}/${assetsFilenames}.js`,
+    path: config.path.target,
+    publicPath: config.path.public,
+    filename: `${config.folder.scripts}/${file}.js`,
   },
   stats: {
     hash: false,
     version: false,
     timings: false,
     children: false,
-    errors: true,
+    errors: false,
     errorDetails: true,
     warnings: false,
     chunks: false,
     modules: false,
     reasons: true,
     source: false,
-    publicPath: true,
+    publicPath: false,
   },
   module: {
     rules: [
       {
         enforce: 'pre',
-        test: /\.(js|s[ca]ss|less|css)$/,
-        include: config.paths.source,
+        test: /\.(js|s?[ca]ss|less)$/,
+        include: config.path.source,
         loader: 'import-glob',
       },
       {
         test: /\.js$/,
         exclude: [/(node_modules)(?![/|\\](bootstrap|foundation-sites))/],
         use: [
-          {loader: 'buble', options: {objectAssign: 'Object.assign'}},
+          {
+            loader: 'buble',
+            options: {objectAssign: 'Object.assign'},
+          },
+          {
+            loader: 'ifdef',
+            options: {
+              DEVELOPMENT: config.env.development,
+              PRODUCTION: config.env.production,
+            },
+          },
         ],
       },
       {
         test: /\.css$/,
-        include: config.paths.source,
+        include: config.path.source,
         use: ExtractTextPlugin.extract({
           fallback: 'style',
           use: [
-            {loader: 'css', options: {sourceMap: config.enabled.sourceMaps}},
+            {
+              loader: 'css',
+              options: {sourceMap: config.env.development},
+            },
             {
               loader: 'postcss', options: {
                 config: {path: __dirname, ctx: config},
-                sourceMap: config.enabled.sourceMaps,
+                sourceMap: config.env.development,
               },
             },
           ],
@@ -64,49 +78,61 @@ let webpackConfig = {
       },
       {
         test: /\.less$/,
-        include: config.paths.source,
+        include: config.path.source,
         use: ExtractTextPlugin.extract({
           fallback: 'style',
           use: [
-            {loader: 'css', options: {sourceMap: config.enabled.sourceMaps}},
+            {
+              loader: 'css',
+              options: {sourceMap: config.env.development},
+            },
             {
               loader: 'postcss', options: {
                 config: {path: __dirname, ctx: config},
-                sourceMap: config.enabled.sourceMaps,
+                sourceMap: config.env.development,
               },
             },
-            {loader: 'less', options: {sourceMap: config.enabled.sourceMaps}},
+            {
+              loader: 'less',
+              options: {sourceMap: config.env.development},
+            },
           ],
         }),
       },
       {
-        test: /\.s[ac]ss$/,
-        include: config.paths.source,
+        test: /\.s[ca]ss$/,
+        include: config.path.source,
         use: ExtractTextPlugin.extract({
           fallback: 'style',
           use: [
-            {loader: 'css', options: {sourceMap: config.enabled.sourceMaps}},
+            {
+              loader: 'css',
+              options: {sourceMap: config.env.development},
+            },
             {
               loader: 'postcss', options: {
                 config: {path: __dirname, ctx: config},
-                sourceMap: config.enabled.sourceMaps,
+                sourceMap: config.env.development,
               },
             },
             {
               loader: 'resolve-url',
-              options: {sourceMap: config.enabled.sourceMaps},
+              options: {sourceMap: config.env.development},
             },
-            {loader: 'sass', options: {sourceMap: config.enabled.sourceMaps}},
+            {
+              loader: 'sass',
+              options: {sourceMap: true},
+            },
           ],
         }),
       },
       {
         test: /\.(ttf|eot|woff2?|png|jpe?g|gif|svg|ico)$/,
-        include: config.paths.source,
+        include: config.path.source,
         loader: 'url',
         options: {
           limit: 4096,
-          name: `[path]${assetsFilenames}.[ext]`,
+          name: `[path]${file}.[ext]`,
         },
       },
       {
@@ -116,14 +142,14 @@ let webpackConfig = {
         options: {
           limit: 4096,
           outputPath: 'vendor/',
-          name: `${config.cacheBusting}.[ext]`,
+          name: `${file}.[ext]`,
         },
       },
     ],
   },
   resolve: {
     modules: [
-      config.paths.source,
+      config.path.source,
       'node_modules',
     ],
     enforceExtension: false,
@@ -131,75 +157,61 @@ let webpackConfig = {
   resolveLoader: {
     moduleExtensions: ['-loader'],
   },
-  externals: {
-    jquery: 'jQuery',
-  },
   plugins: [
-    new CleanPlugin(config.paths.clean, {
-      root: config.paths.root,
+    new CleanPlugin(config.path.clean, {
+      root: config.path.root,
       verbose: false,
     }),
-    /**
-     * It would be nice to switch to copy-webpack-plugin, but
-     * unfortunately it doesn't provide a reliable way of
-     * tracking the before/after file names
-     */
-    new CopyGlobsPlugin({
-      pattern: config.copy,
-      output: `[path]${assetsFilenames}.[ext]`,
-      manifest: config.manifest,
+    new CopyPlugin({
+      pattern: config.path.copy,
+      output: `[path]${file}.[ext]`,
+      manifest: config.cache.files,
     }),
     new ExtractTextPlugin({
-      filename: `${config.folders.styles}/${assetsFilenames}.css`,
+      filename: `${config.folder.styles}/${file}.css`,
       allChunks: true,
-      disable: (config.enabled.watcher),
-    }),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
+      disable: (config.watch.enabled),
     }),
     new webpack.LoaderOptionsPlugin({
-      minimize: config.enabled.optimize,
-      debug: config.enabled.watcher,
+      minimize: config.env.production,
+      debug: config.watch.enabled,
       stats: {colors: true},
     }),
     new webpack.LoaderOptionsPlugin({
-      test: /\.css|s[ac]ss|less$/,
+      test: /\.(s?[ca]ss|less)$/,
       options: {
-        output: {path: config.paths.target},
-        context: config.paths.source,
+        output: {path: config.path.target},
+        context: config.path.source,
       },
     }),
-    new FriendlyErrorsWebpackPlugin(),
+    new FriendlyErrorsPlugin({
+      additionalTransformers: [ErrorsHelper.transform],
+      additionalFormatters: [ErrorsHelper.format],
+    }),
   ],
 };
 
-if (['all', 'styles', 'scripts'].includes(config.enabled.lint)) {
+if (config.jquery.enabled) {
+  webpackConfig = merge(webpackConfig, require('./webpack.jquery')(config));
+}
+
+if (config.lint.enabled) {
   webpackConfig = merge(webpackConfig, require('./webpack.lint')(config));
 }
 
-if (config.enabled.optimize) {
+if (config.env.production) {
   webpackConfig = merge(webpackConfig, require('./webpack.optimize')(config));
 }
 
-if (config.env.production) {
-  webpackConfig.plugins.push(new webpack.NoEmitOnErrorsPlugin());
+if (config.workbox.enabled) {
+  webpackConfig = merge(webpackConfig, require('./webpack.workbox')(config));
 }
 
-if (config.enabled.cacheBusting) {
-  const WebpackAssetsManifest = require('webpack-assets-manifest');
-
-  webpackConfig.plugins.push(new WebpackAssetsManifest({
-    output: config.manifestFile,
-    space: 2,
-    writeToDisk: false,
-    assets: config.manifest,
-    replacer: require('./helpers/manifest'),
-  }));
+if (config.cache.enabled) {
+  webpackConfig = merge(webpackConfig, require('./webpack.manifest')(config));
 }
 
-if (config.enabled.watcher) {
+if (config.watch.enabled) {
   webpackConfig.entry = require('./helpers/hmr-loader')(webpackConfig.entry);
   webpackConfig = merge(webpackConfig, require('./webpack.watch')(config));
 }
