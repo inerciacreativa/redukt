@@ -10,6 +10,7 @@ Redukt is an utility to build assets and resources. Redukt is based on [Sage 9](
 * Styles linting with [stylelint](https://stylelint.io/).
 * Modern JavaScript with [Bublé](https://github.com/bublejs/buble).
 * Scripts linting with [ESLint](https://eslint.org/).
+* Cache busting manifest.
 * Support for [jQuery](https://jquery.com/).
 * Support for [Workbox](https://developers.google.com/web/tools/workbox/) to build PWAs.
 
@@ -18,24 +19,9 @@ Redukt is an utility to build assets and resources. Redukt is based on [Sage 9](
 * [Node.js](http://nodejs.org/)
 * [Yarn](https://yarnpkg.com/en/docs/install)
 
-## Structure
+## Installation
 
-```shell
-project/                  # → Root of your Redukt based project
-├── node_modules/         # → Node.js packages (never edit)
-├── package.json          # → Node.js dependencies and scripts
-├── source/               # → Source assets
-│   ├── build/            # → Webpack, ESLint and PostCSS config
-│   ├── images/           # → Source images
-│   ├── scripts/          # → Source scripts
-│   ├── styles/           # → Source stylesheets
-│   └── config.json       # → Settings
-└── target/               # → Built assets (never edit)
-    ├── images/           # → Optimized images (never edit)
-    ├── scripts/          # → Optimiezd scripts (never edit)
-    ├── styles/           # → Optimiezd stylesheets (never edit)
-    └── assets.json       # → Cache busting manifest (never edit)
-```
+Download and copy the files to the root of the project. For WordPress or Drupal it will be the folder of the theme you are developing. Then create a file named `config.json` in the `source` folder.
 
 ## Build commands
 
@@ -47,18 +33,20 @@ project/                  # → Root of your Redukt based project
 
 ## Config options
 
+Only the first three are required.
+
 | Name | Type | Default | Description |
 |---|---|---|---|
 |`entry`|`{string\|Object}`|`{[chunk: string]: string\|string[]}`|The entry points for **webpack**.|
 |`path.public`|`{string}`|`/`|Specifies the public URL of the output directory when referenced in a browser (see `output.publicPath` config option of **webpack**).|
-|`lint.styles`|`{boolean}`|`true`|Whether to lint stylesheets with **stylelint**.|
-|`lint.scripts`|`{boolean}`|`true`|Whether to lint scripts with **ESLint**.|
-|`lint.watch`|`{boolean}`|`true`|Whether to run linters when in watch mode.|
 |`watch.url`|`{string}`||The local development URL.|
 |`watch.proxy`|`{string}`|`http://localhost:3000`|The proxy for the local URL.|
 |`watch.https`|`{boolean|Object}`|`false`|Whether to enable HTTPS for local development. It can be a hash with a `key` and a `cert` properties to enable with custom certificates.|
 |`watch.open`|`{boolean}`|`false`|Whether to launch the browser when watch mode starts.|
 |`watch.files`|`{Array}`|`[]`|Files to watch. Changes you make will either be injected into the page (CSS & images) or will cause all browsers to do a full-page refresh.|
+|`lint.styles`|`{boolean}`|`true`|Whether to lint stylesheets with **stylelint**.|
+|`lint.scripts`|`{boolean}`|`true`|Whether to lint scripts with **ESLint**.|
+|`lint.watch`|`{boolean}`|`true`|Whether to run linters when in watch mode.|
 |`cache.manifest`|`{string}`|`assets.json`|The name of the generated cache manifest.|
 |`cache.name`|`{string}`|`[name].[hash:12]`|The filenames that will be generated (see `output.filename` config option of **webpack**).|
 |`jquery.enabled`|`{boolean}`|`false`|Whether to use jQuery.|
@@ -67,6 +55,49 @@ project/                  # → Root of your Redukt based project
 |`workbox.manifest`|`{string}`|`cache.[manifestHash].js`|The name of the generated precache manifest (see `precacheManifestFilename` config option).|
 |`workbox.cdn`|`{boolean}`|`false`|Whether to load Workbox from the CDN or create a local copy of the runtime librarie (see `importWorkboxFrom` config option).|
 |`workbox.urls`|`{Object}`|`{}`|To generate unique versioning information (see `templatedUrls` config option).|
+|`folder.target`|`{string}`|`target`|The folder where the assets will be created.|
+|`folder.styles`|`{string}`|`styles`|The folder where the styles are located (and will be created under the `target` folder).|
+|`folder.scripts`|`{string}`|`scripts`|The folder where the scripts are located (and will be created under the `target` folder).|
+|`folder.images`|`{string}`|`images`|The folder where the images will are located (and will be created under the `target` folder).|
+
+## Structure
+
+This is the default folder structure:
+
+```shell
+project/                  # → Root of your Redukt based project
+├── node_modules/         # → Node.js packages
+├── package.json          # → Node.js dependencies and scripts
+├── source/               # → Source assets
+│   ├── build/            # → Webpack, ESLint and PostCSS config
+│   ├── images/           # → Source images
+│   ├── scripts/          # → Source scripts
+│   ├── styles/           # → Source stylesheets
+│   └── config.json       # → Settings
+└── target/               # → Built assets
+    ├── images/           # → Optimized images
+    ├── scripts/          # → Optimized scripts
+    ├── styles/           # → Optimized stylesheets
+    └── assets.json       # → Cache busting manifest
+```
+
+With the config example for Drupal, this will be the structure:
+
+```shell
+project/                  # → Root of your Redukt based project
+├── node_modules/         # → Node.js packages
+├── package.json          # → Node.js dependencies and scripts
+├── source/               # → Source assets
+│   ├── build/            # → Webpack, ESLint and PostCSS config
+│   ├── img/              # → Source images
+│   ├── js/               # → Source scripts
+│   ├── css/              # → Source stylesheets
+│   └── config.json       # → Settings
+├── img/                  # → Optimized images
+├── js/                   # → Optimized scripts
+├── css/                  # → Optimized stylesheets
+└── assets.json           # → Cache busting manifest
+```
 
 ## Workbox
 
