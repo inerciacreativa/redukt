@@ -1,6 +1,6 @@
 {
   "name": "redukt",
-  "version": "3.0.0",
+  "version": "1.0.0",
   "author": "Jose Cuesta <jose.cuesta@inerciacreativa.com>",
   "homepage": "https://inerciacreativa.com/",
   "repository": {
@@ -16,19 +16,17 @@
       "url": "http://opensource.org/licenses/MIT"
     }
   ],
-  "scripts": {
-    "start": "webpack --hide-modules --watch --config source/build/webpack.config.js",
-    "build": "webpack --progress --config source/build/webpack.config.js",
-    "build:production": "webpack --progress -p --config source/build/webpack.config.js",
-    "lint:js": "eslint source/scripts source/build",
-    "lint:css": "stylelint 'source/styles/**/*'"
+  "bin": {
+    "watch": "./bin/watch.js",
+    "build": "./bin/build.js",
+    "lint": "./bin/lint.js"
   },
   "engines": {
     "node": ">= 6.9.4 || >= 8.7.0"
   },
-  "devDependencies": {
+  "dependencies": {
     "autoprefixer": "^9.5.1",
-    "browser-sync": "^2.26.3",
+    "browser-sync": "^2.26.5",
     "browsersync-webpack-plugin": "^0.6.0",
     "bs-html-injector": "^3.0.3",
     "buble": "^0.19.7",
@@ -55,11 +53,12 @@
     "rename-output-webpack-plugin": "^1.0.1",
     "resolve-url-loader": "^3.1.0",
     "sass-loader": "^7.1.0",
+    "signal-exit": "^3.0.2",
     "style-loader": "^0.23.1",
-    "stylelint": "^9.10.1",
-    "stylelint-bare-webpack-plugin": "^0.1.3",
-    "stylelint-config-standard": "^18.2.0",
-    "stylelint-scss": "^3.5.4",
+    "stylelint": "^10.0.1",
+    "stylelint-webpack-plugin": "https://github.com/inerciacreativa/stylelint-webpack-plugin#0.10.7",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-scss": "^3.6.1",
     "upath": "^1.1.2",
     "url-loader": "^1.1.2",
     "webpack": "^3.12.0",
@@ -67,10 +66,7 @@
     "webpack-dev-middleware": "^2.0.6",
     "webpack-hot-middleware": "^2.24.4",
     "webpack-merge": "^4.2.1",
-    "workbox-webpack-plugin": "^3.6.3",
+    "workbox-webpack-plugin": "^4.3.1",
     "yargs": "^13.2.2"
-  },
-  "dependencies": {
-    "jquery": "^3.3.1"
   }
 }

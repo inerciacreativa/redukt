@@ -21,15 +21,14 @@ Redukt is an utility to build assets and resources. Redukt is based on [Sage 9](
 
 ## Installation
 
-Download and copy the files to the root of the project. For WordPress or Drupal it will be the folder of the theme you are developing. Then create a file named `config.json` in the `source` folder.
+Download and copy the files to the root of the project. For WordPress or Drupal it will be the folder of the theme you are developing. Then create a file named `redukt.json` in the same folder.
 
 ## Build commands
 
-* `yarn start` — Start **Browsersync** session (watch mode), compile assets when file changes are made.
+* `yarn watch` — Start **Browsersync** session (watch mode), compile assets when file changes are made.
 * `yarn build` — Compile the assets.
-* `yarn build:production` — Compile and optimize the assets for production.
-* `yarn lint:css` — Run **stylelint**.
-* `yarn lint:js` — Run **ESLint**.
+* `yarn build -p` — Compile and optimize the assets for production.
+* `yarn lint` — Run **ESLint** and **stylelint**.
 
 ## Config options
 
@@ -68,36 +67,21 @@ This is the default folder structure:
 project/                  # → Root of your Redukt based project
 ├── node_modules/         # → Node.js packages
 ├── package.json          # → Node.js dependencies and scripts
+├── redukt.json           # → Settings
 ├── source/               # → Source assets
-│   ├── build/            # → Webpack, ESLint and PostCSS config
 │   ├── images/           # → Source images
 │   ├── scripts/          # → Source scripts
 │   ├── styles/           # → Source stylesheets
-│   └── config.json       # → Settings
-└── target/               # → Built assets
-    ├── images/           # → Optimized images
-    ├── scripts/          # → Optimized scripts
-    ├── styles/           # → Optimized stylesheets
-    └── assets.json       # → Cache busting manifest
+└── target/               # → Built assets (generated, do not edit)
+    ├── images/           # → Optimized images (generated, do not edit)
+    ├── scripts/          # → Optimized scripts (generated, do not edit)
+    ├── styles/           # → Optimized stylesheets (generated, do not edit)
+    └── assets.json       # → Cache busting manifest (generated, do not edit)
 ```
 
-With the config example for Drupal, this will be the structure:
+## jQuery
 
-```shell
-project/                  # → Root of your Redukt based project
-├── node_modules/         # → Node.js packages
-├── package.json          # → Node.js dependencies and scripts
-├── source/               # → Source assets
-│   ├── build/            # → Webpack, ESLint and PostCSS config
-│   ├── img/              # → Source images
-│   ├── js/               # → Source scripts
-│   ├── css/              # → Source stylesheets
-│   └── config.json       # → Settings
-├── img/                  # → Optimized images
-├── js/                   # → Optimized scripts
-├── css/                  # → Optimized stylesheets
-└── assets.json           # → Cache busting manifest
-```
+You must add jQuery as a dependency.
 
 ## Workbox
 
