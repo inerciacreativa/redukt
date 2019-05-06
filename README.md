@@ -81,8 +81,12 @@ project/                  # → Root of your Redukt based project
 
 ## jQuery
 
-You must add jQuery as a dependency.
+You must add jQuery as a dependency in order to use it.
 
 ## Workbox
 
 Redukt uses the [InjectManifest](https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin#injectmanifest_plugin_1) plugin, that creates a precache manifest and inject it in the service worker with `importScripts()`.
+
+## License
+
+#### [MIT](./LICENSE.md)
