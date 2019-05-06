@@ -1,21 +1,29 @@
 {
   "name": "redukt",
   "version": "1.0.0",
-  "author": "Jose Cuesta <jose.cuesta@inerciacreativa.com>",
-  "homepage": "https://inerciacreativa.com/",
+  "description": "",
+  "keywords": [
+    "webpack",
+    "sass",
+    "less",
+    "css",
+    "es6",
+    "browsersync",
+    "workbox",
+    "jquery"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/inerciacreativa/redukt",
   "repository": {
     "type": "git",
-    "url": "git://github.com/inerciacreativa/redukt.git"
+    "url": "https://github.com/inerciacreativa/redukt.git"
   },
-  "bugs": {
-    "url": "https://github.com/inerciacreativa/redukt/issues"
+  "bugs":  "https://github.com/inerciacreativa/redukt/issues",
+  "author": {
+    "name": "Jose Cuesta",
+    "email": "jose.cuesta@inerciacreativa.com",
+    "url": "https://inerciacreativa.com/"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://opensource.org/licenses/MIT"
-    }
-  ],
   "bin": {
     "watch": "./bin/watch.js",
     "build": "./bin/build.js",
@@ -56,7 +64,7 @@
     "signal-exit": "^3.0.2",
     "style-loader": "^0.23.1",
     "stylelint": "^10.0.1",
-    "stylelint-webpack-plugin": "https://github.com/inerciacreativa/stylelint-webpack-plugin#0.10.7",
+    "stylelint-ext-webpack-plugin": "^0.10.7",
     "stylelint-config-standard": "^18.3.0",
     "stylelint-scss": "^3.6.1",
     "upath": "^1.1.2",
