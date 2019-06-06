@@ -18,7 +18,7 @@
     "type": "git",
     "url": "https://github.com/inerciacreativa/redukt.git"
   },
-  "bugs":  "https://github.com/inerciacreativa/redukt/issues",
+  "bugs": "https://github.com/inerciacreativa/redukt/issues",
   "author": {
     "name": "Jose Cuesta",
     "email": "jose.cuesta@inerciacreativa.com",
@@ -33,7 +33,7 @@
     "node": ">= 6.9.4 || >= 8.7.0"
   },
   "dependencies": {
-    "autoprefixer": "^9.5.1",
+    "autoprefixer": "^9.6.0",
     "browser-sync": "^2.26.5",
     "browsersync-webpack-plugin": "^0.6.0",
     "bs-html-injector": "^3.0.3",
@@ -45,7 +45,7 @@
     "cssnano": "^4.1.10",
     "eslint": "^5.16.0",
     "eslint-loader": "^2.1.2",
-    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-import": "^2.17.3",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^2.0.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
@@ -64,9 +64,9 @@
     "signal-exit": "^3.0.2",
     "style-loader": "^0.23.1",
     "stylelint": "^10.0.1",
-    "stylelint-ext-webpack-plugin": "^0.10.7",
     "stylelint-config-standard": "^18.3.0",
-    "stylelint-scss": "^3.6.1",
+    "stylelint-ext-webpack-plugin": "^0.10.7",
+    "stylelint-scss": "^3.8.0",
     "upath": "^1.1.2",
     "url-loader": "^1.1.2",
     "webpack": "^3.12.0",
@@ -75,6 +75,6 @@
     "webpack-hot-middleware": "^2.24.4",
     "webpack-merge": "^4.2.1",
     "workbox-webpack-plugin": "^4.3.1",
-    "yargs": "^13.2.2"
+    "yargs": "^13.2.4"
   }
 }
