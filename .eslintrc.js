@@ -30,7 +30,7 @@ module.exports = {
     "import/core-modules": [],
     "import/ignore": [
       "node_modules",
-      "\\.(scss|css|less|svg|json)$"
+      "\\.(scss|css|svg|json)$"
     ]
   },
   "rules": {

@@ -1,15 +1,19 @@
 # Redukt
 
-Redukt is an utility to build assets and resources. Redukt is based on [Sage 9](https://roots.io/sage/).
+Redukt is an utility to build assets and resources.
 
 ## Features
 
 * [webpack](https://webpack.github.io/) for compiling assets, optimizing images, and concatenating and minifying files.
 * [Browsersync](http://www.browsersync.io/) for synchronized browser testing.
-* Sass and Less for stylesheets.
+* [Sass](https://sass-lang.com/) for stylesheets.
+* Use PostCSS [Autoprefixer](https://autoprefixer.github.io/) to make CSS work with needed vendor prefixes.
+* Support for modern JavaScript with [Babel](https://babeljs.io/).
 * Styles linting with [stylelint](https://stylelint.io/).
-* Modern JavaScript with [Bublé](https://github.com/bublejs/buble).
 * Scripts linting with [ESLint](https://eslint.org/).
+* Minifying styles with [cssnano](https://cssnano.co/).
+* Minifying scripts with [terser](https://github.com/terser-js/terser).
+* Minifying images with [imagemin](https://github.com/imagemin/imagemin) (JPEG, PNG, GIF, SVG, WebP).
 * Cache busting manifest.
 * Support for [jQuery](https://jquery.com/).
 * Support for [Workbox](https://developers.google.com/web/tools/workbox/) to build PWAs.
@@ -38,26 +42,30 @@ Only the first three are required.
 |---|---|---|---|
 |`entry`|`{string\|Object}`|`{[chunk: string]: string\|string[]}`|The entry points for **webpack**.|
 |`path.public`|`{string}`|`/`|Specifies the public URL of the output directory when referenced in a browser (see `output.publicPath` config option of **webpack**).|
+|`folder.source`|`{string}`|`source`|The base folder where the assets are located.|
+|`folder.target`|`{string}`|`target`|The base folder where the assets will be created.|
+|`folder.styles`|`{string}`|`styles`|The folder where the styles are located (and will be created under the `target` folder).|
+|`folder.scripts`|`{string}`|`scripts`|The folder where the scripts are located (and will be created under the `target` folder).|
+|`folder.images`|`{string}`|`images`|The folder where the images will are located (and will be created under the `target` folder).|
 |`watch.url`|`{string}`||The local development URL.|
 |`watch.proxy`|`{string}`|`http://localhost:3000`|The proxy for the local URL.|
-|`watch.https`|`{boolean|Object}`|`false`|Whether to enable HTTPS for local development. It can be a hash with a `key` and a `cert` properties to enable with custom certificates.|
+|`watch.https`|`{boolean\|Object}`|`false`|Whether to enable HTTPS for local development. It can be a hash with a `key` and a `cert` properties to enable with custom certificates.|
 |`watch.open`|`{boolean}`|`false`|Whether to launch the browser when watch mode starts.|
-|`watch.files`|`{Array}`|`[]`|Files to watch. Changes you make will either be injected into the page (CSS & images) or will cause all browsers to do a full-page refresh.|
-|`lint.styles`|`{boolean}`|`true`|Whether to lint stylesheets with **stylelint**.|
+|`watch.delay`|`{number}`|`250`|Reload delay following a file change event.|
+|`patterns.copy`|`{Array}`|`['images/**/*']`|Files to copy. Changes you make will cause all browsers to do a full-page refresh in watch mode.|
+|`patterns.html`|`{Array}`|`['*.php']`|Files to watch in watch mode. Changes you make will either be injected into the page (CSS & HTML).|
 |`lint.scripts`|`{boolean}`|`true`|Whether to lint scripts with **ESLint**.|
-|`lint.watch`|`{boolean}`|`true`|Whether to run linters when in watch mode.|
+|`lint.styles`|`{boolean}`|`true`|Whether to lint stylesheets with **stylelint**.|
+|`lint.watch`|`{boolean}`|`false`|Whether to run linters when in watch mode.|
 |`cache.manifest`|`{string}`|`assets.json`|The name of the generated cache manifest.|
 |`cache.name`|`{string}`|`[name].[hash:12]`|The filenames that will be generated (see `output.filename` config option of **webpack**).|
+|`imagemin`|`{Object}`|`{}`|Custom configuration for **imagemin**. See `lib/imagemin.config.js` for current configuration.|
 |`jquery.enabled`|`{boolean}`|`false`|Whether to use jQuery.|
 |`jquery.bundle`|`{boolean}`|`false`|Whether to serve as an external script or bundle with the main entry point for JavaScript|
 |`workbox.script`|`{string}`||The service worker script. If empty Workbox will not be used (see `swSrc` config option).|
 |`workbox.manifest`|`{string}`|`cache.[manifestHash].js`|The name of the generated precache manifest (see `precacheManifestFilename` config option).|
 |`workbox.cdn`|`{boolean}`|`false`|Whether to load Workbox from the CDN or create a local copy of the runtime librarie (see `importWorkboxFrom` config option).|
 |`workbox.urls`|`{Object}`|`{}`|To generate unique versioning information (see `templatedUrls` config option).|
-|`folder.target`|`{string}`|`target`|The folder where the assets will be created.|
-|`folder.styles`|`{string}`|`styles`|The folder where the styles are located (and will be created under the `target` folder).|
-|`folder.scripts`|`{string}`|`scripts`|The folder where the scripts are located (and will be created under the `target` folder).|
-|`folder.images`|`{string}`|`images`|The folder where the images will are located (and will be created under the `target` folder).|
 
 ## Structure
 
@@ -89,4 +97,4 @@ Redukt uses the [InjectManifest](https://developers.google.com/web/tools/workbox
 
 ## License
 
-#### [MIT](./LICENSE.md)
+[MIT](./LICENSE.md)

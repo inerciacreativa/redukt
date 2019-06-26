@@ -1,4 +1,2 @@
-source/config.json
-target
 node_modules
 yarn-error.log
