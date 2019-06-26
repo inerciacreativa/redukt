@@ -36,8 +36,6 @@ Download and copy the files to the root of the project. For WordPress or Drupal 
 
 ## Config options
 
-Only the first three are required.
-
 | Name | Type | Default | Description |
 |---|---|---|---|
 |`entry`|`{string\|Object}`|`{[chunk: string]: string\|string[]}`|The entry points for **webpack**.|
