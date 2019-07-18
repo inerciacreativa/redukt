@@ -2,7 +2,7 @@
 
 Redukt is an utility to build assets and resources.
 
-## [Features]
+## Features
 
 * [webpack](https://webpack.github.io/) for compiling assets, optimizing images, and concatenating and minifying files.
 * [Browsersync](http://www.browsersync.io/) for synchronized browser testing.
