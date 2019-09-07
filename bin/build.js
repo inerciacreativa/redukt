@@ -11,19 +11,21 @@ if (argv.p || argv.production) {
 
 const webpack = spawn('webpack', params);
 let clear = null;
+let date = false;
 
-webpack.stdout.on('data', (data) => {
-  const text = output.data(data);
+webpack.stdout.on('data', (buffer) => {
+  const text = output.parseBuffer(buffer, date);
 
   output.write(text, clear);
 
+  date = true;
   if (clear === true) {
     clear = false;
   }
 })
 
 webpack.stderr.on('data', (data) => {
-  const text = output.error(data);
+  const text = output.parseError(data);
 
   if (clear === null) {
     clear = true;

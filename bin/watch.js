@@ -9,18 +9,14 @@ const node = spawn('node', params, {
   stdio: ['ignore', 'pipe', 'pipe'],
 });
 
-node.stdout.on('data', (data) => {
-  const text = output.data(data);
-
-  if (text.indexOf('DONE') !== -1 || text.indexOf('WAIT') !== -1 || text.indexOf('WARNING') !== -1) {
-    console.clear();
-  }
+node.stdout.on('data', (buffer) => {
+	const text = output.parseBuffer(buffer);
 
   output.write(text);
 })
 
-node.stderr.on('data', (data) => {
-  const text = output.error(data);
+node.stderr.on('data', (buffer) => {
+  const text = output.parseError(buffer);
 
   console.clear();
   text.forEach(line => output.write(line));
