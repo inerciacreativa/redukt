@@ -35,8 +35,8 @@
     "node": ">= 8.10.0 || >= 10.13.0"
   },
   "dependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
     "autoprefixer": "^9.6.1",
     "babel-loader": "^8.0.6",
     "browser-sync": "^2.26.7",
@@ -70,9 +70,9 @@
     "stylelint": "^10.1.0",
     "stylelint-config-standard": "^18.3.0",
     "stylelint-ext-webpack-plugin": "^0.10.7",
-    "stylelint-scss": "^3.10.0",
+    "stylelint-scss": "^3.10.1",
     "svg-url-loader": "^3.0.2",
-    "terser-webpack-plugin": "^2.0.0",
+    "terser-webpack-plugin": "^2.0.1",
     "url-loader": "^2.1.0",
     "webpack": "^4.39.3",
     "webpack-assets-manifest": "^3.1.1",
