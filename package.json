@@ -1,6 +1,6 @@
 {
   "name": "redukt",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Redukt is an utility to build and compile assets and resources",
   "keywords": [
     "webpack",
