@@ -6,7 +6,7 @@ Redukt is an utility to build assets and resources.
 
 * [webpack](https://webpack.github.io/) for compiling assets, optimizing images, and concatenating and minifying files.
 * [Browsersync](http://www.browsersync.io/) for synchronized browser testing.
-* [Sass](https://sass-lang.com/) for stylesheets.
+* [Sass](https://sass-lang.com/) and [Less](http://lesscss.org/) for stylesheets.
 * Use PostCSS [Autoprefixer](https://autoprefixer.github.io/) to make CSS work with needed vendor prefixes.
 * Support for modern JavaScript with [Babel](https://babeljs.io/).
 * Styles linting with [stylelint](https://stylelint.io/).
