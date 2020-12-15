@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-const {argv} = require('yargs');
 const {spawnSync} = require('child_process');
 const path = require('path');
 const config = require('./../lib/config');
