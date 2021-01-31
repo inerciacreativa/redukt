@@ -3,16 +3,19 @@
 const {argv} = require('yargs');
 const {spawn} = require('child_process');
 const output = require('./../lib/helpers/output');
-const params = ['--config=node_modules/redukt/lib/webpack.config.js', '--colors', '--progress'];
+const params = ['npx webpack', '--config=node_modules/redukt/lib/webpack.config.js', '--progress'];
 
 if (argv.p || argv.production) {
-	params.push('-p')
+	params.push('--mode=production')
 }
 
-const webpack = spawn('webpack', params);
+const webpack = spawn(params.join(' '), {
+	stdio: 'inherit',
+	shell: true
+});
 let clear = null;
 let date = false;
-
+/*
 webpack.stdout.on('data', (buffer) => {
 	const text = output.parseBuffer(buffer, date);
 
@@ -33,3 +36,4 @@ webpack.stderr.on('data', (buffer) => {
 
 	text.forEach(line => output.write(line, clear));
 });
+*/
