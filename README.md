@@ -4,7 +4,7 @@ Redukt is an utility to build assets and resources.
 
 ## Features
 
-* [webpack](https://webpack.github.io/) for compiling assets, optimizing images, and concatenating and minifying files.
+* [webpack](https://webpack.js.org/) for compiling assets, optimizing images, and concatenating and minifying files.
 * [Browsersync](http://www.browsersync.io/) for synchronized browser testing.
 * [Sass](https://sass-lang.com/) and [Less](http://lesscss.org/) for stylesheets.
 * Use PostCSS [Autoprefixer](https://autoprefixer.github.io/) to make CSS work with needed vendor prefixes.
@@ -56,15 +56,16 @@ For WordPress or Drupal it will be the folder of the theme you are developing. T
 |`watch.url`|`{string}`||The local development URL.|
 |`watch.proxy`|`{string}`|`http://localhost:3000`|The proxy for the local URL.|
 |`watch.https`|`{boolean\|Object}`|`false`|Whether to enable HTTPS for local development. It can be a hash with a `key` and a `cert` properties to enable with custom certificates.|
+|`watch.unsafe`|`{boolean}`|`false`|Allow to connect to an insecure HTTPS server.|
 |`watch.open`|`{boolean}`|`false`|Whether to launch the browser when watch mode starts.|
 |`watch.delay`|`{number}`|`250`|Reload delay following a file change event.|
-|`patterns.copy`|`{Array}`|`['images/**/*', 'fonts/**/*']`|Files to copy. These default folders will be included only if they exists and are not empty.|
-|`patterns.html`|`{Array}`|`['*.php']`|Files to watch in watch mode. Changes you make will either be injected into the page (CSS & HTML).|
+|`watch.inject`|`{Array}`|`['*.php']`|Files to watch in watch mode. Changes you make will be injected into the page (HTML).|
 |`lint.scripts`|`{boolean}`|`true`|Whether to lint scripts with **ESLint**.|
 |`lint.styles`|`{boolean}`|`true`|Whether to lint stylesheets with **stylelint**.|
 |`lint.watch`|`{boolean}`|`false`|Whether to run linters when in watch mode.|
 |`cache.manifest`|`{string}`|`assets.json`|The name of the generated cache manifest.|
 |`cache.name`|`{string}`|`[name].[hash:12]`|The filenames that will be generated (see `output.filename` config option of **webpack**).|
+|`copy`|`{Array}`|`[]`|Files to copy. These default folders will be included only if they exists and are not empty. See [`copy-webpack-plugin`](https://webpack.js.org/plugins/copy-webpack-plugin/).|
 |`imagemin`|`{Object}`|`{}`|Custom configuration for **imagemin**. See `lib/imagemin.config.js` for current configuration.|
 |`jquery.enabled`|`{boolean}`|`false`|Whether to use jQuery.|
 |`jquery.bundle`|`{boolean}`|`false`|Whether to serve as an external script or bundle with the main entry point for JavaScript|
@@ -114,14 +115,8 @@ This `redukt.json` example config is for a WordPress theme.
         "https": {
             "key": "path-to-your/private.key",
             "cert": "path-to-your/public.cert"
-        }
-    },
-    "patterns": {
-        "html": ["*.php"],
-        "copy": [
-            "images/**/*",
-            "fonts/**/*"
-        ]
+        },
+        "inject": ["*.php"]
     },
     "jquery": {
         "enabled": true
