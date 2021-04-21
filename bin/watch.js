@@ -1,24 +1,33 @@
 #!/usr/bin/env node
 
+const {argv} = require('yargs');
 const {spawn} = require('child_process');
 const exit = require('signal-exit');
-const output = require('./../lib/helpers/output');
-const params = ['node_modules/redukt/lib/webpack.watch.js', '--colors', '--watch'];
+const params = ['redukt/src/redukt.js', '--color', '--watch', '--hot'];
+
+if (argv.d || argv.debug) {
+	params.push('--debug');
+}
+
 const node = spawn('node', params, {
 	detached: true,
 	stdio: ['ignore', 'pipe', 'pipe'],
 });
 
 node.stdout.on('data', (buffer) => {
-	const text = output.parseBuffer(buffer);
+	const text = buffer.toString();
 
-	output.write(text);
+	process.stdout.write(text);
 })
 
 node.stderr.on('data', (buffer) => {
-	const text = output.parseError(buffer);
+	const text = buffer.toString();
 
-	text.forEach(line => output.write(line));
+	if (text.match(/NODE_TLS_REJECT_UNAUTHORIZED/)) {
+		return;
+	}
+
+	process.stdout.write(text);
 });
 
 node.unref();

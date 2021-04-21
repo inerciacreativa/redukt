@@ -1,0 +1,398 @@
+diff --git a/node_modules/browser-sync/LICENSE b/node_modules/browser-sync/LICENSE
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/certs/browsersync.pfx b/node_modules/browser-sync/certs/browsersync.pfx
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/certs/server.crt b/node_modules/browser-sync/certs/server.crt
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/certs/server.csr b/node_modules/browser-sync/certs/server.csr
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/certs/server.key b/node_modules/browser-sync/certs/server.key
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/cli-options/opts.init.json b/node_modules/browser-sync/cli-options/opts.init.json
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/cli-options/opts.recipe.json b/node_modules/browser-sync/cli-options/opts.recipe.json
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/cli-options/opts.reload.json b/node_modules/browser-sync/cli-options/opts.reload.json
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/cli-options/opts.start.json b/node_modules/browser-sync/cli-options/opts.start.json
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/args.js b/node_modules/browser-sync/dist/args.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/args.js.map b/node_modules/browser-sync/dist/args.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/async-tasks.js b/node_modules/browser-sync/dist/async-tasks.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/async-tasks.js.map b/node_modules/browser-sync/dist/async-tasks.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/async.js b/node_modules/browser-sync/dist/async.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/async.js.map b/node_modules/browser-sync/dist/async.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/bin.js.map b/node_modules/browser-sync/dist/bin.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/browser-sync.js b/node_modules/browser-sync/dist/browser-sync.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/browser-sync.js.map b/node_modules/browser-sync/dist/browser-sync.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/cli-info.js b/node_modules/browser-sync/dist/cli/cli-info.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/cli-info.js.map b/node_modules/browser-sync/dist/cli/cli-info.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/cli-options.js b/node_modules/browser-sync/dist/cli/cli-options.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/cli-options.js.map b/node_modules/browser-sync/dist/cli/cli-options.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/command.init.js b/node_modules/browser-sync/dist/cli/command.init.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/command.init.js.map b/node_modules/browser-sync/dist/cli/command.init.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/command.recipe.js b/node_modules/browser-sync/dist/cli/command.recipe.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/command.recipe.js.map b/node_modules/browser-sync/dist/cli/command.recipe.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/command.reload.js b/node_modules/browser-sync/dist/cli/command.reload.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/command.reload.js.map b/node_modules/browser-sync/dist/cli/command.reload.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/command.start.js b/node_modules/browser-sync/dist/cli/command.start.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/command.start.js.map b/node_modules/browser-sync/dist/cli/command.start.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/addCwdToWatchOptions.js b/node_modules/browser-sync/dist/cli/transforms/addCwdToWatchOptions.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/addCwdToWatchOptions.js.map b/node_modules/browser-sync/dist/cli/transforms/addCwdToWatchOptions.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/addDefaultIgnorePatterns.js b/node_modules/browser-sync/dist/cli/transforms/addDefaultIgnorePatterns.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/addDefaultIgnorePatterns.js.map b/node_modules/browser-sync/dist/cli/transforms/addDefaultIgnorePatterns.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/addToFilesOption.js b/node_modules/browser-sync/dist/cli/transforms/addToFilesOption.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/addToFilesOption.js.map b/node_modules/browser-sync/dist/cli/transforms/addToFilesOption.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/appendServerDirectoryOption.js b/node_modules/browser-sync/dist/cli/transforms/appendServerDirectoryOption.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/appendServerDirectoryOption.js.map b/node_modules/browser-sync/dist/cli/transforms/appendServerDirectoryOption.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/appendServerIndexOption.js b/node_modules/browser-sync/dist/cli/transforms/appendServerIndexOption.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/appendServerIndexOption.js.map b/node_modules/browser-sync/dist/cli/transforms/appendServerIndexOption.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/copyCLIIgnoreToWatchOptions.js b/node_modules/browser-sync/dist/cli/transforms/copyCLIIgnoreToWatchOptions.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/copyCLIIgnoreToWatchOptions.js.map b/node_modules/browser-sync/dist/cli/transforms/copyCLIIgnoreToWatchOptions.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/handleExtensionsOption.js b/node_modules/browser-sync/dist/cli/transforms/handleExtensionsOption.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/handleExtensionsOption.js.map b/node_modules/browser-sync/dist/cli/transforms/handleExtensionsOption.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/handleFilesOption.js b/node_modules/browser-sync/dist/cli/transforms/handleFilesOption.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/handleFilesOption.js.map b/node_modules/browser-sync/dist/cli/transforms/handleFilesOption.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/handleGhostModeOption.js b/node_modules/browser-sync/dist/cli/transforms/handleGhostModeOption.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/handleGhostModeOption.js.map b/node_modules/browser-sync/dist/cli/transforms/handleGhostModeOption.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/handleHostOption.js b/node_modules/browser-sync/dist/cli/transforms/handleHostOption.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/handleHostOption.js.map b/node_modules/browser-sync/dist/cli/transforms/handleHostOption.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/handlePortsOption.js b/node_modules/browser-sync/dist/cli/transforms/handlePortsOption.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/handlePortsOption.js.map b/node_modules/browser-sync/dist/cli/transforms/handlePortsOption.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/handleProxyOption.js b/node_modules/browser-sync/dist/cli/transforms/handleProxyOption.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/handleProxyOption.js.map b/node_modules/browser-sync/dist/cli/transforms/handleProxyOption.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/handleServerOption.js b/node_modules/browser-sync/dist/cli/transforms/handleServerOption.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/cli/transforms/handleServerOption.js.map b/node_modules/browser-sync/dist/cli/transforms/handleServerOption.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/config.js b/node_modules/browser-sync/dist/config.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/config.js.map b/node_modules/browser-sync/dist/config.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/connect-utils.js b/node_modules/browser-sync/dist/connect-utils.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/connect-utils.js.map b/node_modules/browser-sync/dist/connect-utils.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/default-config.js b/node_modules/browser-sync/dist/default-config.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/default-config.js.map b/node_modules/browser-sync/dist/default-config.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/file-event-handler.js b/node_modules/browser-sync/dist/file-event-handler.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/file-event-handler.js.map b/node_modules/browser-sync/dist/file-event-handler.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/file-utils.js b/node_modules/browser-sync/dist/file-utils.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/file-utils.js.map b/node_modules/browser-sync/dist/file-utils.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/file-watcher.js b/node_modules/browser-sync/dist/file-watcher.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/file-watcher.js.map b/node_modules/browser-sync/dist/file-watcher.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/hooks.js b/node_modules/browser-sync/dist/hooks.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/hooks.js.map b/node_modules/browser-sync/dist/hooks.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/http-protocol.js b/node_modules/browser-sync/dist/http-protocol.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/http-protocol.js.map b/node_modules/browser-sync/dist/http-protocol.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/index.js b/node_modules/browser-sync/dist/index.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/index.js.map b/node_modules/browser-sync/dist/index.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/internal-events.js b/node_modules/browser-sync/dist/internal-events.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/internal-events.js.map b/node_modules/browser-sync/dist/internal-events.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/lodash.custom.js b/node_modules/browser-sync/dist/lodash.custom.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/lodash.custom.js.map b/node_modules/browser-sync/dist/lodash.custom.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/logger.js b/node_modules/browser-sync/dist/logger.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/logger.js.map b/node_modules/browser-sync/dist/logger.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/options.js b/node_modules/browser-sync/dist/options.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/options.js.map b/node_modules/browser-sync/dist/options.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/plugins.js b/node_modules/browser-sync/dist/plugins.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/plugins.js.map b/node_modules/browser-sync/dist/plugins.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/public/exit.js b/node_modules/browser-sync/dist/public/exit.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/public/exit.js.map b/node_modules/browser-sync/dist/public/exit.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/public/init.js b/node_modules/browser-sync/dist/public/init.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/public/init.js.map b/node_modules/browser-sync/dist/public/init.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/public/notify.js b/node_modules/browser-sync/dist/public/notify.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/public/notify.js.map b/node_modules/browser-sync/dist/public/notify.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/public/pause.js b/node_modules/browser-sync/dist/public/pause.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/public/pause.js.map b/node_modules/browser-sync/dist/public/pause.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/public/public-utils.js b/node_modules/browser-sync/dist/public/public-utils.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/public/public-utils.js.map b/node_modules/browser-sync/dist/public/public-utils.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/public/reload.js b/node_modules/browser-sync/dist/public/reload.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/public/reload.js.map b/node_modules/browser-sync/dist/public/reload.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/public/resume.js b/node_modules/browser-sync/dist/public/resume.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/public/resume.js.map b/node_modules/browser-sync/dist/public/resume.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/public/stream.js b/node_modules/browser-sync/dist/public/stream.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/public/stream.js.map b/node_modules/browser-sync/dist/public/stream.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/server/index.js b/node_modules/browser-sync/dist/server/index.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/server/index.js.map b/node_modules/browser-sync/dist/server/index.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/server/proxy-server.js b/node_modules/browser-sync/dist/server/proxy-server.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/server/proxy-server.js.map b/node_modules/browser-sync/dist/server/proxy-server.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/server/proxy-utils.js b/node_modules/browser-sync/dist/server/proxy-utils.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/server/proxy-utils.js.map b/node_modules/browser-sync/dist/server/proxy-utils.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/server/serve-static-wrapper.js b/node_modules/browser-sync/dist/server/serve-static-wrapper.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/server/serve-static-wrapper.js.map b/node_modules/browser-sync/dist/server/serve-static-wrapper.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/server/snippet-server.js b/node_modules/browser-sync/dist/server/snippet-server.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/server/snippet-server.js.map b/node_modules/browser-sync/dist/server/snippet-server.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/server/static-server.js b/node_modules/browser-sync/dist/server/static-server.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/server/static-server.js.map b/node_modules/browser-sync/dist/server/static-server.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/server/utils.js b/node_modules/browser-sync/dist/server/utils.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/server/utils.js.map b/node_modules/browser-sync/dist/server/utils.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/snippet.js b/node_modules/browser-sync/dist/snippet.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/snippet.js.map b/node_modules/browser-sync/dist/snippet.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/sockets.js b/node_modules/browser-sync/dist/sockets.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/sockets.js.map b/node_modules/browser-sync/dist/sockets.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/tunnel.js b/node_modules/browser-sync/dist/tunnel.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/tunnel.js.map b/node_modules/browser-sync/dist/tunnel.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/types.js b/node_modules/browser-sync/dist/types.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/types.js.map b/node_modules/browser-sync/dist/types.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/utils.js b/node_modules/browser-sync/dist/utils.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/dist/utils.js.map b/node_modules/browser-sync/dist/utils.js.map
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/readme.md b/node_modules/browser-sync/readme.md
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/templates/cli-template.js b/node_modules/browser-sync/templates/cli-template.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/templates/connector.tmpl b/node_modules/browser-sync/templates/connector.tmpl
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/templates/script-tags-simple.tmpl b/node_modules/browser-sync/templates/script-tags-simple.tmpl
+old mode 100644
+new mode 100755
+diff --git a/node_modules/browser-sync/templates/script-tags.tmpl b/node_modules/browser-sync/templates/script-tags.tmpl
+old mode 100644
+new mode 100755
+index fed9de4..cc66b8a
+--- a/node_modules/browser-sync/templates/script-tags.tmpl
++++ b/node_modules/browser-sync/templates/script-tags.tmpl
+@@ -1,3 +1,6 @@
+ <script id="__bs_script__">//<![CDATA[
+-    document.write("<script %async% src='%script%'><\/script>".replace("HOST", location.hostname));
++    const script = document.createElement('script');
++    script.setAttribute('async', '');
++    script.setAttribute('src', '%script%'.replace("HOST", location.hostname));
++    document.body.appendChild(script);
+ //]]></script>

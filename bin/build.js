@@ -2,13 +2,17 @@
 
 const {argv} = require('yargs');
 const {spawn} = require('child_process');
-const params = ['webpack', '--config=node_modules/redukt/lib/webpack.config.js', '--progress'];
+const params = ['--config=redukt/src/redukt.js', '--color', '--progress'];
 
 if (argv.p || argv.production) {
-	params.push('--mode=production')
+	params.push('--mode=production');
 }
 
-const webpack = spawn(params.join(' '), {
+if (argv.d || argv.debug) {
+	params.push('--env debug');
+}
+
+const webpack = spawn('webpack', params, {
 	stdio: 'inherit',
 	shell: true
 });

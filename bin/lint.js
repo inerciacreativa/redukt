@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
+const Redukt = require('../src/builder/Redukt');
 const {spawnSync} = require('child_process');
 const path = require('path');
-const config = require('./../lib/config');
+
+const config = new Redukt().config;
 const styles = path.resolve(config.folder.source, config.folder.styles, '**/*');
 const scripts = path.resolve(config.folder.source, config.folder.scripts);
 const color = '\x1b[30m\x1b[42m';
