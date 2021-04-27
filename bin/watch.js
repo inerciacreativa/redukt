@@ -3,7 +3,7 @@
 const {argv} = require('yargs');
 const {spawn} = require('child_process');
 const exit = require('signal-exit');
-const params = ['redukt/src/redukt.js', '--color', '--watch', '--hot'];
+const params = ['node_modules/redukt/src/redukt.js', '--color', '--watch', '--hot'];
 
 if (argv.d || argv.debug) {
 	params.push('--debug');

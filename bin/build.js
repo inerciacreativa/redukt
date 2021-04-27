@@ -2,7 +2,7 @@
 
 const {argv} = require('yargs');
 const {spawn} = require('child_process');
-const params = ['--config=redukt/src/redukt.js', '--color', '--progress'];
+const params = ['--config=node_modules/redukt/src/redukt.js', '--color', '--progress'];
 
 if (argv.p || argv.production) {
 	params.push('--mode=production');
