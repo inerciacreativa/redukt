@@ -20,9 +20,11 @@ class Optimization extends ReduktComponent {
 		return {
 			optimization: {
 				sideEffects: true,
-				minimizer: [new Terser(this).plugin()],
+				minimizer: [
+					new Terser(this).plugin(),
+					new Imagemin(this).plugin(),
+				],
 			},
-			plugins: [new Imagemin(this).plugin()],
 		};
 	}
 }

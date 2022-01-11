@@ -40,10 +40,13 @@ class Imagemin extends ReduktPlugin {
 	 */
 	plugin() {
 		return new ImageminPlugin({
-			filename: `[path][name][ext]`,
 			loader: false,
-			minimizerOptions: {
-				plugins: this.getConfig(),
+			minimizer: {
+				implementation: ImageminPlugin.imageminMinify,
+				filename: `[path][name][ext]`,
+				options: {
+					plugins: this.getConfig(),
+				}
 			},
 		});
 	}

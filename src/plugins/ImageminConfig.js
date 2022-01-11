@@ -53,54 +53,24 @@ class ImageminConfig {
 	static getVectorDefaults(inline = false) {
 		if (inline) {
 			return {
-				svgo: [
-					{
-						name: 'removeScriptElement',
-						active: true,
-					},
-					{
-						name: 'removeStyleElement',
-						active: true,
-					},
-					{
-						name: 'mergeStyles',
-						active: false,
-					},
-					{
-						name: 'inlineStyles',
-						active: false,
-					},
-					{
-						name: 'minifyStyles',
-						active: false,
-					},
-				],
+				svgo: {
+					removeScriptElement: true,
+					removeStyleElement: true,
+					mergeStyles: false,
+					inlineStyles: false,
+					minifyStyles: false,
+				}
 			};
 		}
 
 		return {
-			svgo: [
-				{
-					name: 'removeTitle',
-					active: false,
-				},
-				{
-					name: 'removeUselessDefs',
-					active: false,
-				},
-				{
-					name: 'removeHiddenElems',
-					active: false,
-				},
-				{
-					name: 'removeUnknownsAndDefaults',
-					active: false,
-				},
-				{
-					name: 'cleanupIDs',
-					active: false,
-				},
-			],
+			svgo: {
+				removeTitle: false,
+				removeUselessDefs: false,
+				removeHiddenElems: false,
+				removeUnknownsAndDefaults: false,
+				cleanupIDs: false,
+			}
 		};
 	}
 
@@ -118,7 +88,10 @@ class ImageminConfig {
 			if (name === 'svgo') {
 				const plugins = config[name] ? Merge.svgo(values, config[name]) : values;
 
-				result.push([name, {plugins: extendDefaultPlugins(plugins)}]);
+				result.push([name, {plugins: [{
+					name: 'preset-default',
+					params: {overrides: plugins}
+				}]}]);
 			} else {
 				result.push([name, Merge.webpack(values, config[name])]);
 			}
