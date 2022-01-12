@@ -48,8 +48,10 @@ class Imagemin extends ReduktLoader {
 				loader: ImageminPlugin.loader,
 				options: {
 					filter: source => source.byteLength <= limit,
-					minimizerOptions: {
-						plugins: this.getVectorPlugins(true),
+					minimizer: {
+						options: {
+							plugins: this.getVectorPlugins(true),
+						},
 					},
 				},
 			},
@@ -57,8 +59,10 @@ class Imagemin extends ReduktLoader {
 				loader: ImageminPlugin.loader,
 				options: {
 					filter: source => source.byteLength > limit,
-					minimizerOptions: {
-						plugins: this.getVectorPlugins(),
+					minimizer: {
+						options: {
+							plugins: this.getVectorPlugins(),
+						},
 					},
 				},
 			},
@@ -72,8 +76,10 @@ class Imagemin extends ReduktLoader {
 		return {
 			loader: ImageminPlugin.loader,
 			options: {
-				minimizerOptions: {
-					plugins: this.getRasterPlugins(),
+				minimizer: {
+					options: {
+						plugins: this.getRasterPlugins(),
+					},
 				},
 			},
 		};

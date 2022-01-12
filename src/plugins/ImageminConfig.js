@@ -24,6 +24,9 @@ class ImageminConfig {
 	 */
 	static getRasterDefaults() {
 		return {
+			gifsicle: {
+				optimizationLevel: 3,
+			},
 			mozjpeg: {
 				progressive: true,
 				quality: 80,
@@ -34,9 +37,6 @@ class ImageminConfig {
 			pngquant: {
 				quality: [.65, .9],
 				speed: 4,
-			},
-			gifsicle: {
-				optimizationLevel: 3,
 			},
 			webp: {
 				quality: 80,

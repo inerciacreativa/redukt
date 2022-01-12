@@ -14,5 +14,5 @@ if (argv.d || argv.debug) {
 
 const webpack = spawn('webpack', params, {
 	stdio: 'inherit',
-	shell: true
+	shell: true,
 });

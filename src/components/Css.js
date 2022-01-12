@@ -10,7 +10,6 @@ const loaders = [
 	'MiniCssExtract',
 	'Css',
 	'PostCss',
-	'Less',
 	'Sass',
 ];
 
@@ -71,12 +70,10 @@ class Css extends ReduktComponent {
 			this.loaders.get('PostCss').loader(),
 		];
 
-		const less = this.loaders.get('Less').loader();
 		const sass = this.loaders.get('Sass').loader();
 
 		return [
 			this.getRule(/\.p?css$/, css),
-			this.getRule(/\.less$/, [...css, less]),
 			this.getRule(/\.s[ca]ss$/, [...css, ...sass]),
 		];
 	}

@@ -120,7 +120,7 @@ class Browsersync {
 				webpackDevMiddleware(compiler, {
 					publicPath: this.proxy.href,
 					writeToDisk: (file) => {
-						return /\.([ot]tf|eot|woff2?|svg|png|jpe?g|gif|webp)$/.test(file);
+						return /\.(gif|jpe?g|png|svg|webp|eot|[ot]tf|woff2?)$/.test(file);
 					},
 				}),
 				webpackHotMiddleware(compiler, {

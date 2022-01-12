@@ -90,14 +90,14 @@ class Assets extends ReduktComponent {
 		const imagemin = new Imagemin(this);
 
 		return [
-			this.getResourceAsset(/(\.([ot]tf|eot|woff2?)$|font.*\.svg$)/, this.folderFonts),
+			this.getResourceAsset(/(\.(eot|[ot]tf|woff2?)$|font.*\.svg$)/, this.folderFonts),
 			this.getGeneralAsset(/^((?!font).)*\.svg$/, this.folderImages, {
 				generator: {
 					dataUrl: content => imagemin.svgUri(content.toString()),
 				},
 				use: imagemin.svgLoader(this.maxSize),
 			}),
-			this.getGeneralAsset(/\.(png|jpe?g|gif|webp)$/, this.folderImages, {
+			this.getGeneralAsset(/\.(gif|jpe?g|png|webp)$/, this.folderImages, {
 				use: imagemin.loader(),
 			}),
 		];

@@ -142,7 +142,7 @@ class Redukt {
 					pngquant: {},
 					gifsicle: {},
 					webp: {},
-					svgo: [],
+					svgo: {},
 				},
 				stylelint: {},
 				eslint: {},
@@ -166,7 +166,6 @@ class Redukt {
 			if (fallback === null) {
 				console.log(`The configuration file ${config} has not been found!`);
 				process.exit(1);
-				throw new Error(`The configuration file ${config} has not been found!`);
 			}
 			return fallback;
 		}

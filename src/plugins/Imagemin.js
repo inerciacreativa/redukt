@@ -41,13 +41,14 @@ class Imagemin extends ReduktPlugin {
 	plugin() {
 		return new ImageminPlugin({
 			loader: false,
+			test: /\.(gif|jpe?g|png|svg|webp)$/i,
+			severityError: "off",
 			minimizer: {
 				implementation: ImageminPlugin.imageminMinify,
-				filename: `[path][name][ext]`,
 				options: {
 					plugins: this.getConfig(),
-				}
-			},
+				},
+			}
 		});
 	}
 }
