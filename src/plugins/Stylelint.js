@@ -27,6 +27,10 @@ class Stylelint extends ReduktPlugin {
 	 * @return {{}}
 	 */
 	getConfig() {
+		if (this.config.plugin.stylelint === true) {
+			return this.getDefaults();
+		}
+
 		return Merge.webpack(this.getDefaults(), this.config.plugin.stylelint);
 	}
 
@@ -34,7 +38,7 @@ class Stylelint extends ReduktPlugin {
 	 * @inheritDoc
 	 */
 	isEnabled() {
-		return !Env.isWatching();
+		return !Env.isWatching() && this.config.plugin.stylelint !== false;
 	}
 
 	/**

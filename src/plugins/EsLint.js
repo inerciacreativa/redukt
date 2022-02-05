@@ -27,6 +27,10 @@ class EsLint extends ReduktPlugin {
 	 * @return {{}}
 	 */
 	getConfig() {
+		if (this.config.plugin.eslint === true) {
+			return this.getDefaults();
+		}
+
 		return Merge.webpack(this.getDefaults(), this.config.plugin.eslint);
 	}
 
@@ -34,7 +38,7 @@ class EsLint extends ReduktPlugin {
 	 * @inheritDoc
 	 */
 	isEnabled() {
-		return !Env.isWatching();
+		return !Env.isWatching() && this.config.plugin.eslint !== false;
 	}
 
 	/**
