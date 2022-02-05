@@ -12,7 +12,6 @@ class Assets extends ReduktComponent {
 	 * @inheritDoc
 	 */
 	init(config) {
-		this.maxSize = 4 * 1024;
 		this.folderImages = config.folder.images;
 		this.folderFonts = config.folder.fonts;
 	}
@@ -36,24 +35,7 @@ class Assets extends ReduktComponent {
 				.replace(/\.[^/.]+$/, '');
 		}
 
-		return `${folder}/${name}${this.hash()}.[ext]`;
-	}
-
-	/**
-	 * Generates the rule for the given test.
-	 *
-	 * @private
-	 * @param {RegExp} test
-	 * @param {String} folder
-	 */
-	getResourceAsset(test, folder) {
-		return {
-			test: test,
-			type: 'asset/resource',
-			generator: {
-				filename: module => this.getName(module.filename, folder),
-			},
-		}
+		return `${folder}/${name}${this.hash()}[ext]`;
 	}
 
 	/**
@@ -65,15 +47,10 @@ class Assets extends ReduktComponent {
 	 * @param {{}} extra
 	 * @return {{}}
 	 */
-	getGeneralAsset(test, folder, extra = {}) {
+	getRule(test, folder, extra = {}) {
 		return Merge.webpack({
 			test: test,
-			type: 'asset',
-			parser: {
-				dataUrlCondition: {
-					maxSize: this.maxSize,
-				},
-			},
+			type: 'asset/resource',
 			generator: {
 				filename: module => this.getName(module.filename, folder),
 			},
@@ -90,15 +67,14 @@ class Assets extends ReduktComponent {
 		const imagemin = new Imagemin(this);
 
 		return [
-			this.getResourceAsset(/(\.(eot|[ot]tf|woff2?)$|font.*\.svg$)/, this.folderFonts),
-			this.getGeneralAsset(/^((?!font).)*\.svg$/, this.folderImages, {
-				generator: {
-					dataUrl: content => imagemin.svgUri(content.toString()),
-				},
-				use: imagemin.svgLoader(this.maxSize),
+			this.getRule(/(\.(eot|[ot]tf|woff2?)$|font.*\.svg$)/, this.folderFonts, {
+				use: imagemin.svgoLoader(),
 			}),
-			this.getGeneralAsset(/\.(gif|jpe?g|png|webp)$/, this.folderImages, {
-				use: imagemin.loader(),
+			this.getRule(/^((?!font).)*\.svg$/, this.folderImages, {
+				use: imagemin.svgoLoader(),
+			}),
+			this.getRule(/\.(gif|jpe?g|png|webp)$/, this.folderImages, {
+				use: imagemin.rasterLoader(),
 			}),
 		];
 	}

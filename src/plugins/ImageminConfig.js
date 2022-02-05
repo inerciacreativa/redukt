@@ -1,7 +1,6 @@
 'use strict';
 
 const Merge = require('../tools/Merge');
-const {extendDefaultPlugins} = require('svgo');
 
 /**
  * @typedef {{}} ReduktImagemin
@@ -9,8 +8,8 @@ const {extendDefaultPlugins} = require('svgo');
  * @property {{}} optipng
  * @property {{}} pngquant
  * @property {{}} gifsicle
- * @property {{}} webp
  * @property {[]} svgo
+ * @property {{}} webp
  */
 
 /**
@@ -29,7 +28,7 @@ class ImageminConfig {
 			},
 			mozjpeg: {
 				progressive: true,
-				quality: 80,
+				quality: 40,
 			},
 			optipng: {
 				optimizationLevel: 7,
@@ -38,40 +37,59 @@ class ImageminConfig {
 				quality: [.65, .9],
 				speed: 4,
 			},
+		};
+	}
+
+	static getWebpDefaults() {
+		return {
 			webp: {
 				quality: 80,
 			},
-		};
+		}
 	}
 
 	/**
 	 *
 	 * @public
-	 * @param {Boolean} inline
 	 * @return {{}}
 	 */
-	static getVectorDefaults(inline = false) {
-		if (inline) {
-			return {
-				svgo: {
-					removeScriptElement: true,
-					removeStyleElement: true,
-					mergeStyles: false,
-					inlineStyles: false,
-					minifyStyles: false,
-				}
-			};
-		}
-
+	static getSvgoDefaults() {
 		return {
-			svgo: {
-				removeTitle: false,
-				removeUselessDefs: false,
-				removeHiddenElems: false,
-				removeUnknownsAndDefaults: false,
-				cleanupIDs: false,
-			}
+			svgo: [
+				{
+					name: 'preset-default',
+					params: {
+						overrides: {
+							removeTitle: false,
+							removeUselessDefs: false,
+							removeHiddenElems: false,
+							removeUnknownsAndDefaults: false,
+							removeViewBox: false,
+							cleanupIDs: false,
+						},
+					},
+				},
+				{
+					name: 'removeAttrs',
+					params: {
+						attrs: 'svg:version',
+					},
+				},
+				'removeXMLProcInst',
+			],
 		};
+	}
+
+	static getRasterPlugins(config) {
+		return ImageminConfig.resolve(config, ImageminConfig.getRasterDefaults());
+	}
+
+	static getWebpPlugins(config) {
+		return ImageminConfig.resolve(config, ImageminConfig.getWebpDefaults());
+	}
+
+	static getSvgoPlugins(config) {
+		return ImageminConfig.resolve(config, ImageminConfig.getSvgoDefaults());
 	}
 
 	/**
@@ -82,22 +100,26 @@ class ImageminConfig {
 	 * @return {[]}
 	 */
 	static resolve(config, defaults) {
-		const result = [];
+		const isObject = object => object && typeof object === 'object';
+		const plugins = [];
 
-		Object.entries(defaults).forEach(([name, values]) => {
+		Object.entries(defaults).forEach(([name, options]) => {
 			if (name === 'svgo') {
-				const plugins = config[name] ? Merge.svgo(values, config[name]) : values;
+				const svgPlugins = config[name] ? Merge.svgo(options, config[name]) : options;
 
-				result.push([name, {plugins: [{
-					name: 'preset-default',
-					params: {overrides: plugins}
-				}]}]);
+				plugins.push([name, {plugins: svgPlugins}]);
 			} else {
-				result.push([name, Merge.webpack(values, config[name])]);
+				if (config[name] === false) {
+					return;
+				} else if (config[name] === true) {
+					plugins.push([name, options]);
+				} else if (isObject(config[name])) {
+					plugins.push([name, Merge.webpack(options, config[name])]);
+				}
 			}
 		});
 
-		return result;
+		return plugins;
 	}
 }
 

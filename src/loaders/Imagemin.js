@@ -3,7 +3,6 @@
 const ReduktLoader = require('./ReduktLoader');
 const ImageminConfig = require('../plugins/ImageminConfig');
 const ImageminPlugin = require('image-minimizer-webpack-plugin');
-const svgToMiniDataURI = require('mini-svg-data-uri');
 
 /**
  * @class
@@ -14,69 +13,44 @@ class Imagemin extends ReduktLoader {
 	 * @return {{}[]}
 	 */
 	getRasterPlugins() {
-		return ImageminConfig.resolve(this.config.plugin.imagemin, ImageminConfig.getRasterDefaults());
+		return ImageminConfig.getRasterPlugins(this.config.plugin.imagemin);
 	}
 
 	/**
 	 * @private
-	 * @param {Boolean} inline
 	 * @return {{}[]}
 	 */
-	getVectorPlugins(inline = false) {
-		const defaults = inline ? {} : this.config.plugin.imagemin;
-
-		return ImageminConfig.resolve(defaults, ImageminConfig.getVectorDefaults(inline));
+	getSvgoPlugins() {
+		return ImageminConfig.getSvgoPlugins(this.config.plugin.imagemin);
 	}
 
 	/**
 	 * @public
-	 * @param {String} data
-	 * @return {String}
-	 */
-	svgUri(data) {
-		return svgToMiniDataURI(data);
-	}
-
-	/**
-	 * @public
-	 * @param {Number} limit
 	 * @return {{}[]}
 	 */
-	svgLoader(limit) {
-		return [
-			{
-				loader: ImageminPlugin.loader,
-				options: {
-					filter: source => source.byteLength <= limit,
-					minimizer: {
-						options: {
-							plugins: this.getVectorPlugins(true),
-						},
+	svgoLoader() {
+		return {
+			loader: ImageminPlugin.loader,
+			options: {
+				minimizer: {
+					implementation: ImageminPlugin.imageminMinify,
+					options: {
+						plugins: this.getSvgoPlugins(),
 					},
 				},
 			},
-			{
-				loader: ImageminPlugin.loader,
-				options: {
-					filter: source => source.byteLength > limit,
-					minimizer: {
-						options: {
-							plugins: this.getVectorPlugins(),
-						},
-					},
-				},
-			},
-		];
+		};
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	loader() {
+	rasterLoader() {
 		return {
 			loader: ImageminPlugin.loader,
 			options: {
 				minimizer: {
+					implementation: ImageminPlugin.imageminMinify,
 					options: {
 						plugins: this.getRasterPlugins(),
 					},

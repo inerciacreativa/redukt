@@ -31,6 +31,7 @@ class PostCss extends ReduktLoader {
 		try {
 			plugins = [...PostCssLoadConfig.sync().plugins];
 		} catch (e) {
+			// Do nothing
 		}
 
 		return plugins;
@@ -71,7 +72,7 @@ class PostCss extends ReduktLoader {
 			options: {
 				sourceMap: Env.isDevelopment(),
 				postcssOptions: {
-					plugins: this.getPlugins()
+					plugins: this.getPlugins(),
 				},
 			},
 		};

@@ -2,7 +2,6 @@
 
 const ReduktPlugin = require('./ReduktPlugin');
 const Env = require('../builder/Env');
-const Merge = require('../tools/Merge');
 const ImageminConfig = require('./ImageminConfig');
 const ImageminPlugin = require('image-minimizer-webpack-plugin');
 
@@ -12,20 +11,42 @@ const ImageminPlugin = require('image-minimizer-webpack-plugin');
 class Imagemin extends ReduktPlugin {
 	/**
 	 *
-	 * @private
-	 * @return {ReduktImagemin}
+	 * @return {{implementation, options: {plugins: *[]}}}
 	 */
-	getDefaults() {
-		return Merge.webpack(ImageminConfig.getRasterDefaults(), ImageminConfig.getVectorDefaults());
+	getMinimizerOptions() {
+		const plugins = [].concat(
+			ImageminConfig.getRasterPlugins(this.config.plugin.imagemin),
+			ImageminConfig.getSvgoPlugins(this.config.plugin.imagemin)
+		);
+
+		return {
+			implementation: ImageminPlugin.imageminMinify,
+			options: {
+				plugins: plugins,
+			},
+		};
 	}
 
 	/**
 	 *
-	 * @private
-	 * @return {[]}
+	 * @return {[{implementation, options: {plugins: *[]}, type: string}]|undefined}
 	 */
-	getConfig() {
-		return ImageminConfig.resolve(this.getDefaults(), this.config.plugin.imagemin);
+	getGeneratorOptions() {
+		const plugins = ImageminConfig.getWebpPlugins(this.config.plugin.imagemin);
+
+		if (plugins.length === 0) {
+			return undefined;
+		}
+
+		return [
+			{
+				implementation: ImageminPlugin.imageminGenerate,
+				type: "asset",
+				options: {
+					plugins: plugins,
+				},
+			},
+		];
 	}
 
 	/**
@@ -41,14 +62,10 @@ class Imagemin extends ReduktPlugin {
 	plugin() {
 		return new ImageminPlugin({
 			loader: false,
-			test: /\.(gif|jpe?g|png|svg|webp)$/i,
-			severityError: "off",
-			minimizer: {
-				implementation: ImageminPlugin.imageminMinify,
-				options: {
-					plugins: this.getConfig(),
-				},
-			}
+			test: /\.(gif|jpe?g|png|svg)$/i,
+			deleteOriginalAssets: false,
+			minimizer: this.getMinimizerOptions(),
+			generator: this.getGeneratorOptions(),
 		});
 	}
 }

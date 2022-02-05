@@ -124,11 +124,6 @@ class Redukt {
 				delay: 100,
 				inject: ['*.php'],
 			},
-			workbox: {
-				script: '',
-				manifest: 'cache.[manifestHash].js',
-				urls: {},
-			},
 			plugin: {
 				postcss: [],
 				autoprefixer: {},
@@ -138,14 +133,14 @@ class Redukt {
 				terser: {},
 				imagemin: {
 					mozjpeg: {},
-					optipng: {},
+					optipng: false,
 					pngquant: {},
 					gifsicle: {},
-					webp: {},
 					svgo: {},
+					webp: false,
 				},
-				stylelint: {},
-				eslint: {},
+				stylelint: true,
+				eslint: true,
 			},
 		}
 	}

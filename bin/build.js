@@ -12,7 +12,7 @@ if (argv.d || argv.debug) {
 	params.push('--env debug');
 }
 
-const webpack = spawn('webpack', params, {
+spawn('webpack', params, {
 	stdio: 'inherit',
 	shell: true,
 });

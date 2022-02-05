@@ -6,7 +6,7 @@ const ReduktComponent = require('./ReduktComponent');
  *
  * @type {String[]}
  */
-const plugins = [
+let plugins = [
 	'Clean',
 	'Copy',
 	'Autoload',
@@ -19,14 +19,12 @@ const plugins = [
 /**
  * @class
  */
-class Plugins extends ReduktComponent {
+ class Plugins extends ReduktComponent {
 	/**
 	 * @inheritDoc
 	 */
 	init(config) {
-		this.plugins = [];
-
-		this.addPlugins(plugins, '../plugins/');
+		this.plugins = this.loadPlugins(plugins, '../plugins/');
 	}
 
 	/**
@@ -36,10 +34,11 @@ class Plugins extends ReduktComponent {
 	 * @param {String[]} plugins
 	 * @param {String} path
 	 */
-	addPlugins(plugins, path) {
-		plugins
-			.map(name => require(`${path}${name}`))
-			.forEach(plugin => this.plugins.push(new plugin(this)));
+	loadPlugins(plugins, path) {
+		return plugins.map(name => {
+			const plugin = require(`${path}${name}`);
+			return new plugin(this);
+		});
 	}
 
 	/**
@@ -47,7 +46,7 @@ class Plugins extends ReduktComponent {
 	 * @private
 	 * @return {Object[]}
 	 */
-	getPlugins() {
+	enablePlugins() {
 		return this.plugins
 			.filter(plugin => plugin.isEnabled())
 			.map(plugin => plugin.plugin());
@@ -58,7 +57,7 @@ class Plugins extends ReduktComponent {
 	 */
 	config() {
 		return {
-			plugins: this.getPlugins(),
+			plugins: this.enablePlugins(),
 		};
 	}
 }
