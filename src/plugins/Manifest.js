@@ -22,6 +22,9 @@ class Manifest extends ReduktPlugin {
 			entry.key = path.join(valuePath, path.basename(entry.key));
 		}
 
+		entry.key = path.normalize(entry.key);
+		entry.value = path.normalize(entry.value);
+
 		return entry;
 	}
 
