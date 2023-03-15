@@ -32,12 +32,12 @@ class Copy extends ReduktPlugin {
 	add(pattern) {
 		const result = {
 			from: '',
-			to: `[path][name]${this.component.hash()}[ext]`,
+            to: '[path][name][hash][ext]',
 		}
 
 		Object.keys(pattern)
 			.filter(key => key in result)
-			.forEach(key => result[key] = pattern[key]);
+			.forEach(key => result[key] = pattern[key].replace('[hash]', `${this.component.hash()}`));
 
 		if (this.exists(result.from)) {
 			this.patterns.push(result);
