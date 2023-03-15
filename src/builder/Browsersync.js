@@ -96,6 +96,7 @@ class Browsersync {
 			reloadDelay: this.delay,
 			cors: true,
 			refresh: true,
+			minify: false,
 			logLevel: 'info',
 			files: [{
 				match: this.files,
