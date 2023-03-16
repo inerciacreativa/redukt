@@ -37,9 +37,11 @@ class Copy extends ReduktPlugin {
 
 		Object.keys(pattern)
 			.filter(key => key in result)
-			.forEach(key => result[key] = pattern[key].replace('[hash]', `${this.component.hash()}`));
+			.forEach(key => result[key] = pattern[key]);
 
 		if (this.exists(result.from)) {
+			result.to = result.to.replace('[hash]', `${this.component.hash()}`);
+
 			this.patterns.push(result);
 		}
 	}
