@@ -2,7 +2,6 @@
 
 const ReduktPlugin = require('./ReduktPlugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const File = require('../tools/File');
 
 /**
  * @typedef {{}} ReduktCopy

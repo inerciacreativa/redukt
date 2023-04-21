@@ -25,10 +25,9 @@ class Browsersync {
 		this.url = new URL(config.watch.url);
 		this.proxy = this.getProxy(config.watch.proxy, this.url, redukt.public());
 		this.https = this.getHttps(config.watch.https, this.url, config.watch.unsafe);
-		this.files = `${config.folder.target}/**/*`;
+        this.files = [`${config.folder.target}/**/*`, ...config.watch.inject];
 		this.open = config.watch.open;
 		this.delay = config.watch.delay;
-		this.inject = config.watch.inject;
 	}
 
 	/**
@@ -104,14 +103,6 @@ class Browsersync {
 					this.browsersync.reload(file);
 				},
 			}],
-			plugins: [
-				{
-					module: 'bs-html-injector',
-					options: {
-						files: this.inject,
-					},
-				},
-			],
 			middleware: [
 				function (request, response, next) {
 					response.setHeader('X-Proxy-Header', 'Redukt');
