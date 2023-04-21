@@ -21,10 +21,11 @@ const path = require('path');
  * @property {string[]}              chunks.extract
  * @property {boolean|string}        chunks.vendors
  * @property {boolean}               chunks.runtime
- * @property {{}}                    cache
- * @property {string}                cache.manifest
- * @property {{}}                    cache.assets
- * @property {Number}                cache.hash
+ * @property {{}}                    manifest
+ * @property {string}                manifest.output
+ * @property {{}}                    manifest.assets
+ * @property {Number}                manifest.hash
+ * @property {function|null}         manifest.customize
  * @property {ReduktCopy[]}          copy
  * @property {{}}                    autoload
  * @property {{}}                    watch
@@ -108,10 +109,11 @@ class Redukt {
 				vendors: true,
 				runtime: true,
 			},
-			cache: {
-				manifest: 'assets.json',
+			manifest: {
+				output: 'assets.json',
 				assets: {},
 				hash: 12,
+                customize: null,
 			},
 			copy: [],
 			autoload: {},
@@ -206,7 +208,7 @@ class Redukt {
 	 * @return {String}
 	 */
 	hash() {
-		return Env.isProduction() ? `.[contenthash:${this.config.cache.hash}]` : '';
+		return Env.isProduction() ? `.[contenthash:${this.config.manifest.hash}]` : '';
 	}
 }
 

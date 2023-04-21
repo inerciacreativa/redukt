@@ -9,6 +9,14 @@ const path = require('path');
  * @class
  */
 class Manifest extends ReduktPlugin {
+    init() {
+        this.customize = null;
+
+        if (typeof this.config.manifest.customize === 'function') {
+            this.customize = this.config.manifest.customize;
+        }
+    }
+
 	/**
 	 * @private
 	 * @param {{key: String, value: String}} entry
@@ -25,6 +33,10 @@ class Manifest extends ReduktPlugin {
 		entry.key = path.normalize(entry.key);
 		entry.value = path.normalize(entry.value);
 
+		if (this.customize) {
+            entry = this.customize(entry, original);
+        }
+
 		return entry;
 	}
 
@@ -35,9 +47,9 @@ class Manifest extends ReduktPlugin {
 	getConfig() {
 		return {
 			writeToDisk: true,
-			output: this.config.cache.manifest,
-			assets: this.config.cache.assets,
-			customize: this.getEntry,
+			output: this.config.manifest.output,
+			assets: this.config.manifest.assets,
+			customize: this.getEntry.bind(this),
 		}
 	}
 
