@@ -39,32 +39,9 @@ class Copy extends ReduktPlugin {
 			.filter(key => key in result)
 			.forEach(key => result[key] = pattern[key]);
 
-		if (this.exists(result.from)) {
-			result.to = result.to.replace('[hash]', `${this.component.hash()}`);
+		result.to = result.to.replace('[hash]', this.component.hash());
 
-			this.patterns.push(result);
-		}
-	}
-
-	/**
-	 * Whether the path exists.
-	 *
-	 * @private
-	 * @param {String} path
-	 * @return {Boolean}
-	 */
-	exists(path) {
-		if (!path) {
-			return false;
-		}
-
-		let test = File.find(path.replace(/\*/g, ''));
-
-		if (!test.isAbsolute()) {
-			test = test.forceFromSource();
-		}
-
-		return File.exists(test.path());
+		this.patterns.push(result);
 	}
 
 	/**
